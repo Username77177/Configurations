@@ -83,10 +83,10 @@ syntax on
 colorscheme iceberg
 
 " Переключения табов
-nnoremap <C-Left> :tabprevious<CR>
-nnoremap <C-Right> :tabnext<CR>
-nnoremap <C-Up> :tabnew<CR>
-nnoremap <C-Down> :tabclose<CR>
+nmap <C-Y> :tabprevious<CR>
+nmap <C-O> :tabnext<CR>
+nmap <C-N> :tabnew<CR>
+nnoremap <C-C> :tabclose<CR>
 
 " Линия статуса: конфигурация
 set noshowmode " Табличка --INSERT-- больше не выводится на экран
