@@ -1,0 +1,194 @@
+window:
+  # Window padding (changes require restart)
+  #
+  # Blank space added around the window in pixels. This padding is not scaled by
+  # DPI and the specified value is always added at both opposing sides.
+  padding:
+    x: 0
+    y: 0
+
+  # Spread additional padding evenly around the terminal content.
+  dynamic_padding: false
+
+  # Window decorations
+  #
+  # Available values:
+  # - full: borders and title bar
+  # - none: neither borders nor title bar
+  # - transparent: title bar, transparent background and title bar buttons
+  # - buttonless: title bar, transparent background, but no title bar buttons
+  decorations: full
+
+  # Startup Mode (changes require restart)
+  #
+  # Values for `startup_mode`:
+  #   - Windowed
+  #   - Maximized
+  #   - Fullscreen
+  #
+  # Values for `startup_mode` (macOS only):
+  #   - SimpleFullscreen
+  startup_mode: Fullscreen 
+
+scrolling:
+  # maximum number of lines in the scrollback buffer. Specifying '0' will
+  # disable scrolling.
+  history: 0
+
+tabspaces: 8
+
+font:
+  # The normal (roman) font face to use.
+  # Style can be specified to pick a specific face.
+  normal:
+    family: "Fira Code"
+
+  # The bold font face
+  bold:
+    family: "Fira Code"
+
+  # The italic font face
+  italic:
+    family: "Fira Code"
+
+  # Point size of the font
+  size: 14.0
+
+  offset:
+    x: 0
+    y: 0
+
+  glyph_offset:
+    x: 0
+    y: 0
+    
+  draw_bold_text_with_bright_colors: true 
+
+hide_when_typing: true
+  # Colors
+ # Colors (iTerm 2 default theme)
+ #colors:
+        # Default colors
+ # primary:
+ #  background: '0x101421'
+ #  foreground: '0xfffbf6'
+ #  
+        # Normal colors
+#  normal:
+    #black:   '0x2e2e2e'
+    #red:     '0xeb4129'
+    #green:   '0xabe047'
+    #yellow:  '0xf6c744'
+    #blue:    '0x47a0f3'
+    #magenta: '0x7b5cb0'
+    #cyan:    '0x64dbed'
+    #white:   '0xe5e9f0'
+    #
+    # Bright colors
+    #bright:
+    #black:   '0x565656'
+    #red:     '0xec5357'
+    #green:   '0xc0e17d'
+    #yellow:  '0xf9da6a'
+    #blue:    '0x49a4f8'
+    #magenta: '0xa47de9'
+    #cyan:    '0x99faf2'
+    #white:   '0xffffff'
+
+  # Colors (Base16 Default Dark)
+colors:
+  # Default colors
+  primary:
+    background: '0x181818'
+    foreground: '0xd8d8d8'
+
+  # Colors the cursor will use if `custom_cursor_colors` is true
+  cursor:
+    text: '0xd8d8d8'
+    cursor: '0xd8d8d8'
+
+  # Normal colors
+  normal:
+    black:   '0x181818'
+    red:     '0xab4642'
+    green:   '0xa1b56c'
+    yellow:  '0xf7ca88'
+    blue:    '0x7cafc2'
+    magenta: '0xba8baf'
+    cyan:    '0x86c1b9'
+    white:   '0xd8d8d8'
+
+  # Bright colors
+  bright:
+    black:   '0x585858'
+    red:     '0xab4642'
+    green:   '0xa1b56c'
+    yellow:  '0xf7ca88'
+    blue:    '0x7cafc2'
+    magenta: '0xba8baf'
+    cyan:    '0x86c1b9'
+    white:   '0xf8f8f8'
+
+
+key_bindings:
+  - { key: V,        mods: Command,       action: Paste                        }
+  - { key: C,        mods: Command,       action: Copy                         }
+  - { key: Q,        mods: Command,       action: Quit                         }
+  - { key: N,        mods: Command,       action: SpawnNewInstance             }
+  - { key: Return,   mods: Command,       action: ToggleFullscreen             }
+
+  - { key: Home,                          chars: "\x1bOH",   mode: AppCursor   }
+  - { key: Home,                          chars: "\x1b[H",   mode: ~AppCursor  }
+  - { key: End,                           chars: "\x1bOF",   mode: AppCursor   }
+  - { key: End,                           chars: "\x1b[F",   mode: ~AppCursor  }
+  - { key: Equals,   mods: Command,       action: IncreaseFontSize             }
+  - { key: Minus,    mods: Command,       action: DecreaseFontSize             }
+  - { key: Minus,    mods: Command|Shift, action: ResetFontSize                }
+  - { key: PageUp,   mods: Shift,         chars: "\x1b[5;2~"                   }
+  - { key: PageUp,   mods: Control,       chars: "\x1b[5;5~"                   }
+  - { key: PageUp,                        chars: "\x1b[5~"                     }
+  - { key: PageDown, mods: Shift,         chars: "\x1b[6;2~"                   }
+  - { key: PageDown, mods: Control,       chars: "\x1b[6;5~"                   }
+  - { key: PageDown,                      chars: "\x1b[6~"                     }
+  - { key: Left,     mods: Shift,         chars: "\x1b[1;2D"                   }
+  - { key: Left,     mods: Control,       chars: "\x1b[1;5D"                   }
+  - { key: Left,     mods: Alt,           chars: "\x1b[1;3D"                   }
+  - { key: Left,                          chars: "\x1b[D",   mode: ~AppCursor  }
+  - { key: Left,                          chars: "\x1bOD",   mode: AppCursor   }
+  - { key: Right,    mods: Shift,         chars: "\x1b[1;2C"                   }
+  - { key: Right,    mods: Control,       chars: "\x1b[1;5C"                   }
+  - { key: Right,    mods: Alt,           chars: "\x1b[1;3C"                   }
+  - { key: Right,                         chars: "\x1b[C",   mode: ~AppCursor  }
+  - { key: Right,                         chars: "\x1bOC",   mode: AppCursor   }
+  - { key: Up,       mods: Shift,         chars: "\x1b[1;2A"                   }
+  - { key: Up,       mods: Control,       chars: "\x1b[1;5A"                   }
+  - { key: Up,       mods: Alt,           chars: "\x1b[1;3A"                   }
+  - { key: Up,                            chars: "\x1b[A",   mode: ~AppCursor  }
+  - { key: Up,                            chars: "\x1bOA",   mode: AppCursor   }
+  - { key: Down,     mods: Shift,         chars: "\x1b[1;2B"                   }
+  - { key: Down,     mods: Control,       chars: "\x1b[1;5B"                   }
+  - { key: Down,     mods: Alt,           chars: "\x1b[1;3B"                   }
+  - { key: Down,                          chars: "\x1b[B",   mode: ~AppCursor  }
+  - { key: Down,                          chars: "\x1bOB",   mode: AppCursor   }
+  - { key: Tab,      mods: Shift,         chars: "\x1b[Z"                      }
+  - { key: F1,                            chars: "\x1bOP"                      }
+  - { key: F2,                            chars: "\x1bOQ"                      }
+  - { key: F3,                            chars: "\x1bOR"                      }
+  - { key: F4,                            chars: "\x1bOS"                      }
+  - { key: F5,                            chars: "\x1b[15~"                    }
+  - { key: F6,                            chars: "\x1b[17~"                    }
+  - { key: F7,                            chars: "\x1b[18~"                    }
+  - { key: F8,                            chars: "\x1b[19~"                    }
+  - { key: F9,                            chars: "\x1b[20~"                    }
+  - { key: F10,                           chars: "\x1b[21~"                    }
+  - { key: F11,                           chars: "\x1b[23~"                    }
+  - { key: F12,                           chars: "\x1b[24~"                    }
+  - { key: Back,                          chars: "\x7f"                        }
+  - { key: Back,     mods: Alt,           chars: "\x1b\x7f"                    }
+  - { key: Insert,                        chars: "\x1b[2~"                     }
+  - { key: Delete,                        chars: "\x1b[3~"                     }
+
+
+shell:
+        program: /usr/bin/zsh
+vim: nospell
