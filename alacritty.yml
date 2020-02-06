@@ -1,59 +1,31 @@
+save_to_clipboard: true # Всё, что выделяется мышью сразу идёт в буфер обмена
+# Настройки окна
 window:
-  # Window padding (changes require restart)
-  #
-  # Blank space added around the window in pixels. This padding is not scaled by
-  # DPI and the specified value is always added at both opposing sides.
   padding:
     x: 0
     y: 0
-
-  # Spread additional padding evenly around the terminal content.
   dynamic_padding: false
-
-  # Window decorations
-  #
-  # Available values:
-  # - full: borders and title bar
-  # - none: neither borders nor title bar
-  # - transparent: title bar, transparent background and title bar buttons
-  # - buttonless: title bar, transparent background, but no title bar buttons
   decorations: full
-
-  # Startup Mode (changes require restart)
-  #
-  # Values for `startup_mode`:
-  #   - Windowed
-  #   - Maximized
-  #   - Fullscreen
-  #
-  # Values for `startup_mode` (macOS only):
-  #   - SimpleFullscreen
+  #Режим полного экрана
   startup_mode: Fullscreen 
 
 scrolling:
-  # maximum number of lines in the scrollback buffer. Specifying '0' will
-  # disable scrolling.
-  history: 0
-
-tabspaces: 8
-
+  #Истрория (прокрутка)
+  history: 0 
+  multiplier: 10
 font:
-  # The normal (roman) font face to use.
-  # Style can be specified to pick a specific face.
+        #Настройка шрифтов
   normal:
     family: "Fira Code"
-
-  # The bold font face
   bold:
     family: "Fira Code"
-
-  # The italic font face
   italic:
     family: "Fira Code"
 
-  # Point size of the font
+  # Размер шрифта
   size: 14.0
 
+  #Отступы у шрифта
   offset:
     x: 0
     y: 0
@@ -61,10 +33,12 @@ font:
   glyph_offset:
     x: 0
     y: 0
-    
+  
+  # Печатать жирный текст яркими шрифтами  
   draw_bold_text_with_bright_colors: true 
 
 hide_when_typing: true
+# Темы были взяты отсюда https://github.com/eendroroy/alacritty-theme
   # Colors
  # Colors (iTerm 2 default theme)
  #colors:
