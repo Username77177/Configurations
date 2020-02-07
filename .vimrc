@@ -239,3 +239,7 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+ let &t_SI = "\e[3 q"
+ let &t_EI = "\e[0 q"
+ set cursorline

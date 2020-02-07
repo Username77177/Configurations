@@ -8,11 +8,15 @@ window:
   decorations: full
   #Режим полного экрана
   startup_mode: Fullscreen 
-
-scrolling:
-  #Истрория (прокрутка)
-  history: 0 
-  multiplier: 10
+  scrolling:
+        history: 10000
+        multiplier: 3
+        faux_multiplier: 3
+        auto_scroll: true
+        #scrolling:
+        ##Истрория (прокрутка)
+        #history: 0 
+        #multiplier: 10
 font:
         #Настройка шрифтов
   normal:
@@ -168,4 +172,3 @@ shell:
         args:
                 - -c
                 - tmux
-vim: nospell
