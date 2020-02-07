@@ -1,5 +1,5 @@
 #!/bin/bash
-sudo pacman -Sy vim tmux 
+sudo pacman -Sy vim tmux wget
 # Env
 echo "Zsh or Fish?"
 echo "[Z] or [F] (0 for nothing): "
@@ -26,10 +26,9 @@ then
 	sudo update-alternatives --config x-terminal-emulator
 elif [[ $value1 == "H" || $value1 == "h" ]]
 then
-	wget https://releases.hyper.is/download/deb
-	mv deb hyper.deb
-        sudo dpkg -i hyper.deb
-	rm hyper.deb
+	wget https://releases.hyper.is/download/AppImage
+	mv AppImage hyper.appimage
+	chmod +x hyper.appimage
 	mv ~/.{hyper.js,hyper.js.old}
 	ln -sfr ./.hyper.js ~/
 	sudo update-alternatives --config x-terminal-emulator

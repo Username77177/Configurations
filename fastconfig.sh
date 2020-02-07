@@ -1,5 +1,5 @@
 #!/bin/bash
-sudo apt install vim tmux 
+sudo apt install vim tmux wget
 # Env
 echo "Zsh or Fish?"
 echo "[Z] or [F] (0 for nothing): "
