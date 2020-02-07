@@ -1,0 +1,33 @@
+[Configuration]
+FontName=Fira Code Medium 15
+MiscAlwaysShowTabs=FALSE
+MiscBell=FALSE
+MiscBellUrgent=FALSE
+MiscBordersDefault=TRUE
+MiscCursorBlinks=FALSE
+MiscCursorShape=TERMINAL_CURSOR_SHAPE_BLOCK
+MiscDefaultGeometry=maximize
+MiscInheritGeometry=TRUE
+MiscMenubarDefault=TRUE
+MiscMouseAutohide=FALSE
+MiscMouseWheelZoom=TRUE
+MiscToolbarDefault=FALSE
+MiscConfirmClose=TRUE
+MiscCycleTabs=TRUE
+MiscTabCloseButtons=TRUE
+MiscTabCloseMiddleClick=TRUE
+MiscTabPosition=GTK_POS_TOP
+MiscHighlightUrls=TRUE
+MiscMiddleClickOpensUri=FALSE
+MiscCopyOnSelect=FALSE
+MiscShowRelaunchDialog=TRUE
+MiscRewrapOnResize=TRUE
+MiscUseShiftArrowsToScroll=FALSE
+MiscSlimTabs=FALSE
+MiscNewTabAdjacent=FALSE
+
+# Theme from https://github.com/chriskempson/base16-xfce4-terminal/blob/master/base16-default.dark.terminalrc
+ColorCursor=#d8d8d8
+ColorForeground=#d8d8d8
+ColorBackground=#181818
+ColorPalette=#181818;#ab4642;#a1b56c;#f7ca88;#7cafc2;#ba8baf;#86c1b9;#d8d8d8;#585858;#ab4642;#a1b56c;#f7ca88;#7cafc2;#ba8baf;#86c1b9;#f8f8f8
