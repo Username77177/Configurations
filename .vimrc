@@ -21,7 +21,10 @@ Plug 'mattn/emmet-vim'
 Plug 'prettier/vim-prettier', {
   \ 'do': 'sudo npm install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+" Плагин 
+Plug 'iamcco/markdown-preview.nvim'
 call plug#end()
+
 
 " Делаем Vim более функциональным
 set nocompatible
