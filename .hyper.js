@@ -7,7 +7,7 @@ module.exports = {
 
 		// Выбор шрифтов
 		fontFamily:
-			'"Fira Code", Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
+			'"Fira Code", "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
 
 		// Жирность шрифта
 		fontWeight: "normal",
@@ -28,7 +28,7 @@ module.exports = {
 		cursorAccentColor: "#010",
 
 		// `'BEAM'` for |, `'UNDERLINE'` for _, `'BLOCK'` for █
-		cursorShape: "BLOCK",
+		cursorShape: "UNDERLINE",
 
 		// Мерцание курсора
 		cursorBlink: true,

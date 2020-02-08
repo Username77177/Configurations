@@ -1,5 +1,5 @@
 #!/bin/bash
-sudo pacman -Sy vim tmux wget
+sudo pacman -Sy vim tmux wget fuse
 # Env
 echo "Zsh or Fish?"
 echo "[Z] or [F] (0 for nothing): "
@@ -23,7 +23,6 @@ then
 	mkdir -p  ~/.config/alacritty
 	mv ~/.config/alacritty/{alacritty.yml,alacritty.old}
 	ln -sfr ./alacritty.yml ~/.config/alacritty/alacritty.yml
-	sudo update-alternatives --config x-terminal-emulator
 elif [[ $value1 == "H" || $value1 == "h" ]]
 then
 	wget https://releases.hyper.is/download/AppImage
@@ -31,20 +30,17 @@ then
 	chmod +x hyper.appimage
 	mv ~/.{hyper.js,hyper.js.old}
 	ln -sfr ./.hyper.js ~/
-	sudo update-alternatives --config x-terminal-emulator
 elif [[ $value1 == "X" || $value1 == "x" ]]
 then
 	sudo pacman -Sy xterm
 	mv ~/.Xresources ~/.Xresources.old
 	ln -sfr ./Xresources-xterm ~/.Xresources
 	xrdb ~/.Xresources
-	sudo update-alternatives --config x-terminal-emulator
 elif [[ $value1 == "F" || $value1 == "f" ]]
 then
 	sudo pacman -Sy xfce4-terminal
 	mkdir -p ~/.config/xfce4/terminal/
 	mv ~/.config/xfce4/terminal/terminalrc ~/.config/xfce4/terminal/terminalrc.old
-	sudo update-alternatives --config x-terminal-emulator
 	ln -sfr ./xfce4-terminalrc ~/.config/xfce4/terminal/terminalrc
 fi
 mv ~/.{vimrc,vimrc.old}
