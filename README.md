@@ -51,7 +51,15 @@
 
 ### Редакторы
 
-#### [NeoVim]()
+#### [NeoVim](https://neovim.io/)
 
 Улучшенная версия Vim
 
+- Множество плагинов для упрощения работы
+- [Emmet](https://github.com/mattn/emmet-vim)
+- [NERDTree](https://github.com/preservim/nerdtree)
+- [LightLine](https://github.com/itchyny/lightline.vim)
+- [Syntastic](https://github.com/scrooloose/syntastic)
+- [Vim-Closetag](https://github.com/alvan/vim-closetag)
+- [Vim-prettier](https://github.com/prettier/vim-prettier)
+- Хоткеи на удобную работу с табами
