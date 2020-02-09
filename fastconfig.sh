@@ -58,24 +58,52 @@ echo "Installing editors"
 if [[ $editor = "v" ]]
 then
 	sudo apt install vim
+	export VISUAL=vim
+	export EDITOR="$VISUAL"
 elif [[ $editor = "d" ]]
 then
 	sudo add-apt-repository ppa:kelleyk/emacs
 	sudo apt install emacs26
 	git clone https://github.com/hlissner/doom-emacs ~/.emacs.d && ~/.emacs.d/bin/doom install
+	echo "Emacs GUI or Emacs in terminal emulator? (G - gui, t - terminal): "
+	read em
+	em=$(echo "$em" | sed 's/.*/\L&/')
+	if [[ $em = "g" ]]
+	then
+		export VISUAL=emacs
+	    export EDITOR="$VISUAL"
+	else
+		export VISUAL="emacs -nw"
+	    export EDITOR="$VISUAL"
+	fi
 elif [[ $editor = "s" ]]
 then
 	sudo add-apt-repository ppa:kelleyk/emacs
 	sudo apt install emacs26
 	git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+	echo "Emacs GUI or Emacs in terminal emulator? (G - gui, t - terminal): "
+	read em
+	em=$(echo "$em" | sed 's/.*/\L&/')
+	if [[ $em = "g" ]]
+	then
+	    export VISUAL=emacs
+		export EDITOR="$VISUAL"
+	else
+		export VISUAL="emacs -nw"
+	    export EDITOR="$VISUAL"
+	fi
 elif [[ $editor = "p" ]]
 then
 	sudo apt install vim
 	curl -sLf https://spacevim.org/install.sh
 	bash ./install.sh
+	export VISUAL=vim
+	export EDITOR="$VISUAL"
 elif [[ $editor = "n" ]]
 then
 	sudo apt install neovim
+	export VISUAL=nvim
+	export EDITOR="$VISUAL"
 fi
 #Configs for editors
 echo "Move editors configs"
@@ -96,3 +124,13 @@ fi
 echo "Move tmux configs"
 mv ~/.{tmux.conf,tmux.conf.old}
 ln -sfr ./tmux.conf ~/.tmux.conf
+if [[ $editor = "d" || $editor = "s" ]]
+then
+	echo "Make alias emacs-gui (emacs) and emacs (emacs -nw)? (1 - yes, 0 - no): "
+	read yon
+	if [[ $yon = "1" ]]
+	then
+		alias emacs-gui="emacs"
+		alias emacs="emacs -nw"
+	fi
+fi
