@@ -1,6 +1,6 @@
 #!/bin/bash
 sudo apt install vim tmux wget
-# Env
+			# Env
 echo "Zsh or Fish?"
 echo "[Z] or [F] (0 for nothing): "
 read value1
@@ -14,7 +14,7 @@ then
 	sudo apt install fish
 	curl -L https://get.oh-my.fish
 fi
-# Terminals
+			# Terminals
 echo "[A]lacritty, [H]yper, [X]term, x[F]ce4-terminal (0 for nothing): "
 read value1
 if [[ $value1 == "A" || $value1 == "a" ]]
@@ -53,7 +53,7 @@ fi
 echo "[V]im, [D]oom Emacs, [S]pace Emacs, S[p]aceVim, [N]eoVim 0 - nothing"
 read editor
 editor=$(echo "$editor" | sed 's/.*/\L&/')
-# Installing Editor
+			# Installing Editor
 echo "Installing editors"
 if [[ $editor = "v" ]]
 then
@@ -105,17 +105,23 @@ then
 	export VISUAL=nvim
 	export EDITOR="$VISUAL"
 fi
-#Configs for editors
+			#Configs for editors
 echo "Move editors configs"
 if [[ $editor = "v" || $editor = "n" || $editor = "p" ]]
 then
+	#VIM
 	mv ~/.{vimrc,vimrc.old}
 	ln -sfr ./editors/vimrc ~/.vimrc
+	#NEOVIM
+	mv ~/.config/nvim/init.vim ~/.config/nvim/init.old
+	ln -sfr ./editors/neovimrc ~/.config/nvim/init.vim
 elif [[ $editor = "d" || $editor = "s" ]]
 then
+	#SPACEMACS
 	echo "If you do not have Spacemacs, error - normal situation with mv"
 	mv ~/.{spacemacs,spacemacs.old}
 	ln -sfr ./editors/spacemacs ~/.spacemacs
+	#DOOM EMACS
 	echo "If you do not have Doom Emacs, error - normal situation with mv and ~/.doom.d/bin/doom refresh"
 	mv ~/.doom.d/ ~/.doom.d.old
 	ln -sfr ./editors/doom.d ~/.doom.d
