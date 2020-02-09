@@ -1,5 +1,4 @@
 #!/bin/bash
-python3 BoostToMd.py
 clear
 git add ./
 git status
