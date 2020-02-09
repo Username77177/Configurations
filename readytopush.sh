@@ -22,7 +22,7 @@ then
     read yon
 	if [[ $yon = "1" ]]
 	then
-		xclip -sel clip < $(cat ./somecodes)
+		xclip -sel clip ./somecodes
 		git push origin master
 	fi
 fi
