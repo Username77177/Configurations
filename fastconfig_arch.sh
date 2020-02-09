@@ -54,11 +54,11 @@ then
 	sudo pacman -Sy vim
 elif [[ $editor = "d" ]]
 then
-	sudo pacman -Sy emacs26
+	sudo pacman -Sy emacs
 	git clone https://github.com/hlissner/doom-emacs ~/.emacs.d && ~/.emacs.d/bin/doom install
 elif [[ $editor = "s" ]]
 then
-	sudo pacman -Sy emacs26
+	sudo pacman -Sy emacs
 	git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 elif [[ $editor = "p" ]]
 then
