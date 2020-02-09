@@ -1,0 +1,92 @@
+call plug#begin()
+
+" FuzzyFinder (для быстрого поиска) (sudo npm install fzf)
+Plug 'junegunn/fzf.vim'
+" NERDTree - быстрый просмотр файлов
+Plug 'preservim/nerdtree'
+" Линия статуса
+Plug 'itchyny/lightline.vim'
+" Темы
+Plug 'cocopon/iceberg.vim'
+" Проверка Синтаксиса
+Plug 'scrooloose/syntastic' 
+" Плагин для закрытия скобок
+Plug 'alvan/vim-closetag'
+" Emmet для Vim
+Plug 'mattn/emmet-vim'
+" Плагин для причесывания кода (sudo npm install prettier)
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'sudo npm install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+call plug#end()
+
+
+" Делаем Vim более функциональным
+set nocompatible
+set t_Co=256
+
+" Конфигурация prettier
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html Prettier
+
+" Конфигурация Emmet
+let g:user_emmet_leader_key='<C-L>' " Хоткей для того, чтобы активировать Emmet (на самом деле - <Ctrl+L+,>)
+let g:user_emmet_mode='a' " Emmet теперь доступен во всех режимах
+let g:user_emmet_install_global = 0 " Emmet не будет активироваться во всех файлах
+autocmd FileType html,css EmmetInstall " Emmet активируется только в файлах с расширением .html и .css
+
+" Автодополнение командной строки
+set wildignorecase
+set wildmode=full
+set wildmode=list:longest
+set completeopt=menuone,preview
+
+" Указываем расширения файлов в которых работает автодополнение тегов
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
+
+" Автодополнение тегов HTML по умолчанию
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+
+" Комбинация клавиш jkl - действует как Escape в режиме Insert
+inoremap jkl <ESC>
+
+" Делаем так, чтобы навигация работала на русском языке
+nmap о j
+nmap л k
+nmap р h
+nmap д l
+nmap ш i
+nmap ф a
+nmap в d
+
+" В нормальном режиме Ctrl+f вызывает :NERDTree
+nmap <C-f> :NERDTreeToggle<CR>
+vmap ++ <plug>NERDCommenterToggle
+nmap ++ <plug>NERDCommenterToggl
+
+let g:NERDTreeGitStatusWithFlags = 1
+let g:NERDTreeIgnore = ['^node_modules$']
+
+" Тема для **NeoVim**
+syntax on
+colorscheme iceberg
+
+" Переключения табов
+nmap <C-Y> :tabprevious<CR>
+nmap <C-O> :tabnext<CR>
+nmap <C-N> :tabnew<CR>
+nnoremap <C-C> :tabclose<CR>
+
+" Линия статуса: конфигурация
+set noshowmode " Табличка --INSERT-- больше не выводится на экран
+set laststatus=2
+let g:lightline = {
+      \ 'colorscheme': 'iceberg',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head'
+      \ },
+      \ }
+
