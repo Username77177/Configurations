@@ -8,7 +8,7 @@ if [[ $value1 == "Z" || $value1 == "z" ]]
 then
 	sudo pacman -Sy zsh
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-	ln -sfr ./.zshrc ~/
+	ln -sfr ./zshrc ~/.zshrc
 elif [[ $value1 == "F" || $value1 == "f" ]]
 then
 	sudo pacman -Sy fish
@@ -22,28 +22,28 @@ then
 	sudo pacman -Sy alacritty
 	mkdir -p  ~/.config/alacritty
 	mv ~/.config/alacritty/{alacritty.yml,alacritty.old}
-	ln -sfr ./alacritty.yml ~/.config/alacritty/alacritty.yml
+	ln -sfr ./terminals/alacritty.yml ~/.config/alacritty/alacritty.yml
 elif [[ $value1 == "H" || $value1 == "h" ]]
 then
 	wget https://releases.hyper.is/download/AppImage
 	mv AppImage hyper.appimage
 	chmod +x hyper.appimage
 	mv ~/.{hyper.js,hyper.js.old}
-	ln -sfr ./.hyper.js ~/
+	ln -sfr ./terminals/hyper.js ~/.hyper.js
 elif [[ $value1 == "X" || $value1 == "x" ]]
 then
 	sudo pacman -Sy xterm
 	mv ~/.Xresources ~/.Xresources.old
-	ln -sfr ./Xresources-xterm ~/.Xresources
+	ln -sfr ./terminals/Xresources-xterm ~/.Xresources
 	xrdb ~/.Xresources
 elif [[ $value1 == "F" || $value1 == "f" ]]
 then
 	sudo pacman -Sy xfce4-terminal
 	mkdir -p ~/.config/xfce4/terminal/
 	mv ~/.config/xfce4/terminal/terminalrc ~/.config/xfce4/terminal/terminalrc.old
-	ln -sfr ./xfce4-terminalrc ~/.config/xfce4/terminal/terminalrc
+	ln -sfr ./terminals/xfce4-terminalrc ~/.config/xfce4/terminal/terminalrc
 fi
 mv ~/.{vimrc,vimrc.old}
 mv ~/.{tmux.conf,tmux.conf.old}
-ln -sfr ./.vimrc ~/
-ln -sfr ./.tmux.conf ~/
+ln -sfr ./editors/vimrc ~/.vimrc
+ln -sfr ./tmux.conf ~/.tmux.conf
