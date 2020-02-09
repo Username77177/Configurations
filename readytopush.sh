@@ -17,12 +17,13 @@ then
 	else
 	git commit -m "$dt | $comment"
 	fi
+
+	echo "Push? (1 - Yes, 0 - No)"
+    read yon
+	if [[ $yon = "1" ]]
+	then
+		cat ./somecodes
+		git push origin master
+	fi
 fi
 
-echo "Push? (1 - Yes, 0 - No)"
-read yon
-if [[ $yon = "1" ]]
-then
-	cat ./somecodes
-	git push origin master
-fi

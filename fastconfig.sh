@@ -49,7 +49,50 @@ then
 	sudo update-alternatives --config x-terminal-emulator
 	ln -sfr ./terminals/xfce4-terminalrc ~/.config/xfce4/terminal/terminalrc
 fi
-mv ~/.{vimrc,vimrc.old}
+
+echo "[V]im, [D]oom Emacs, [S]pace Emacs, S[p]aceVim, [N]eoVim 0 - nothing"
+read editor
+editor=$(echo "$editor" | sed 's/.*/\L&/')
+# Installing Editor
+echo "Installing editors"
+if [[ $editor = "v" ]]
+then
+	sudo apt install vim
+elif [[ $editor = "d" ]]
+then
+	sudo add-apt-repository ppa:kelleyk/emacs
+	sudo apt install emacs26
+	git clone https://github.com/hlissner/doom-emacs ~/.emacs.d && ~/.emacs.d/bin/doom install
+elif [[ $editor = "s" ]]
+then
+	sudo add-apt-repository ppa:kelleyk/emacs
+	sudo apt install emacs26
+	git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+elif [[ $editor = "p" ]]
+then
+	sudo apt install vim
+	curl -sLf https://spacevim.org/install.sh
+	bash ./install.sh
+elif [[ $editor = "n" ]]
+then
+	sudo apt install neovim
+fi
+#Configs for editors
+echo "Move editors configs"
+if [[ $editor = "v" || $editor = "n" || $editor = "p" ]]
+then
+	mv ~/.{vimrc,vimrc.old}
+	ln -sfr ./editors/vimrc ~/.vimrc
+elif [[ $editor = "d" || $editor = "s" ]]
+then
+	echo "If you do not have Spacemacs, error - normal situation with mv"
+	mv ~/.{spacemacs,spacemacs.old}
+	ln -sfr ./editors/spacemacs ~/.spacemacs
+	echo "If you do not have Doom Emacs, error - normal situation with mv and ~/.doom.d/bin/doom refresh"
+	mv ~/.doom.d/ ~/.doom.d.old
+	ln -sfr ./editors/doom.d ~/.doom.d
+	~/.emacs.d/bin/doom refresh
+fi
+echo "Move tmux configs"
 mv ~/.{tmux.conf,tmux.conf.old}
-ln -sfr ./editors/vimrc ~/.vimrc
 ln -sfr ./tmux.conf ~/.tmux.conf
