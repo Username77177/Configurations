@@ -1,6 +1,4 @@
-import os, os.path, urllib.request
-
-
+import os, os.path
 def input_addsoft(error_symbol=""):
     if error_symbol != "":
         print("Здесь не должно быть символа '"+  error_symbol + "'")
@@ -95,8 +93,7 @@ def ru_settings(usernameHome):
                 os.system("git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d")
         #Language
         print("""
-        
-\t _                                                          
+\t _
 \t| |      __ _  _ __    __ _  _   _   __ _   __ _   ___  ___ 
 \t| |     / _` || '_ \  / _` || | | | / _` | / _` | / _ \/ __|
 \t| |___ | (_| || | | || (_| || |_| || (_| || (_| ||  __/\__ \\
@@ -116,7 +113,7 @@ def ru_settings(usernameHome):
         while True:
             language = input("Введите цифру: ")
             if language in {"1","2","3","4","5","0"}:
-                  break
+                 break
         if language == "1":
             print("\nУстанавливаю GCC\n")
             os.system(packagemanager + "gcc")
@@ -141,10 +138,9 @@ def ru_settings(usernameHome):
         elif language == "5":
             print("Устанавливаю Rust")
             os.system(packagemanager + "rustc")
-        
+
         print("""
-        
-\t _____                _        
+\t _____                _
 \t|  ___|  ___   _ __  | |_  ___ 
 \t| |_    / _ \ | '_ \ | __|/ __|
 \t|  _|  | (_) || | | || |_ \__ \\

@@ -140,3 +140,10 @@ then
 		alias emacs="emacs -nw"
 	fi
 fi
+echo "Maybe install some languages? [1 - yes or 0 - no]: "
+read yon
+if [[ $yon = "1" ]]
+then
+	sudo apt install python3
+	python3 -c "from ProgrammerTweaker-modules import *; p = package_man(); install_programming_languages(p)"
+fi
