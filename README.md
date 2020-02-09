@@ -13,6 +13,8 @@
 
 #### [Alacritty](https://github.com/alacritty/alacritty)
 
+![](https://github.com/Username77177/Configurations/tree/master/img/Alacritty.png)
+
 Пока что, наилучший терминал, который я видел. Пройдемся по основным изменениям, которые я сделал в файле конфигурации:
 
 - Всё что обведено мышью сразу же идёт в буфер обмена
@@ -24,6 +26,8 @@
 
 #### xterm
 
+![](https://github.com/Username77177/Configurations/tree/master/img/Xterm.png)
+
 Стандартный терминал, который настроен как и все остальные терминалы, однако работает с минимальными настройками
 
 - Начальный шрифт [Fira Code](https://github.com/tonsky/FiraCode)
@@ -33,6 +37,8 @@
 - Начальная оболочка Bash/zsh/fish
 
 #### [Hyper](https://hyper.is/)
+
+![](https://github.com/Username77177/Configurations/tree/master/img/Hyper.png)
 
 Терминал, построенный на веб-технологиях
 
