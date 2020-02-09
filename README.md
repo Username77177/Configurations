@@ -11,9 +11,9 @@
 
 ### Терминалы
 
-#### [Alacritty](https://github.com/alacritty/alacritty)
+#### [Alacritty](https://raw.github.com/alacritty/alacritty)
 
-![](https://github.com/Username77177/Configurations/tree/master/img/Alacritty.png)
+![Alacritty Image](https://raw.github.com/Username77177/Configurations/master/img/Alacritty.png)
 
 Пока что, наилучший терминал, который я видел. Пройдемся по основным изменениям, которые я сделал в файле конфигурации:
 
@@ -26,7 +26,7 @@
 
 #### xterm
 
-![](https://github.com/Username77177/Configurations/tree/master/img/Xterm.png)
+![Xterm Image](https://raw.github.com/Username77177/Configurations/master/img/Xterm.png)
 
 Стандартный терминал, который настроен как и все остальные терминалы, однако работает с минимальными настройками
 
@@ -38,7 +38,7 @@
 
 #### [Hyper](https://hyper.is/)
 
-![](https://github.com/Username77177/Configurations/tree/master/img/Hyper.png)
+![Hyper Image](https://raw.github.com/Username77177/Configurations/master/img/Hyper.png)
 
 Терминал, построенный на веб-технологиях
 
