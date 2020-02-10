@@ -27,7 +27,7 @@ font:
     family: "Fira Code"
 
   # Размер шрифта
-  size: 14.0
+  size: 12.0
 
   #Отступы у шрифта
   offset:

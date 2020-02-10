@@ -1,45 +1,59 @@
-
-bindsym $mod+Shift+y		exec --no-startup-id i3resize left
-
-bindsym $mod+Shift+u		exec --no-startup-id i3resize down
-
-bindsym $mod+Shift+i		exec --no-startup-id i3resize up
-
-bindsym $mod+Shift+o		exec --no-startup-id i3resize right
-
-# Margins
-for_window [class="^.*"] border pixel 2
-gaps inner 10
-gaps outer 2
+### Some Features
+# Сетуем клавишу мода на Win
+set $mod Mod4
 
 # Терминал
 set $term --no-startup-id $TERMINAL
 
+# Меняем язык через Mod + Space
+exec --no-startup-id setxkbmap -model pc105 -layout us,ru -option grp:win_space_toggle
+
+# Terminal always spawn in 3-rd workspace
+exec alacritty
+exec emacs26
+
 # Обои
 exec_always feh --bg-scale ~/.wallpaper.jpg
-
-# Сетуем клавишу мода на Win
-set $mod Mod4
 
 # Шрифт
 font pango:Fira Code 10
 
-# Клавиша мода + мышка для того чтобы перетаскивать окна в плаваюшем режиме
-floating_modifier $mod
-
 # Мод + Enter чтобы запустить терминал
 bindsym $mod+Return exec i3-sensible-terminal
 
+###
+
+### Keybindings
 #                                       #
 # Впредь клавиша Мода буду писать как М #
 #					                    #
 
+bindsym $mod+Shift+f exec firefox
+bindsym $mod+Shift+e exec emacs
+
 # М + q для того чтобы убить процесс окна
 bindsym $mod+q kill
 
-# M + d для того, чтобы выбрать приложение
+# Alt + Tab для того, чтобы выбрать приложение
 # Тут можно заменить приложение для выбора приложений
-bindsym $mod+d exec dmenu_run
+##bindsym $mod+d exec dmenu_run##
+bindsym mod1+Tab exec "rofi -show combi run,window"
+
+bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'Really, exit?' -b 'Yes' 'i3-msg exit'"
+
+###
+
+### i3-gaps
+  # Margins
+for_window [class="^.*"] border pixel 2
+gaps inner 10
+gaps outer 2
+
+###
+
+# Клавиша мода + мышка для того чтобы перетаскивать окна в плаваюшем режиме
+floating_modifier $mod
+
 
 # Перемещение между окнами
 bindsym $mod+h focus left
@@ -81,7 +95,6 @@ bindsym $mod+a focus parent
 
 # Фокус на дочерние окна данного контейнера
 #bindsym $mod+Shift+d focus child
-
 
 ###
 # Переменные, которые потом будут использоваться повсеместно
@@ -155,3 +168,7 @@ mode "resize" {
 bar {
         status_command i3status
 }
+
+assign [class="Firefox"] $workspace1
+assign [class="Emacs"] $workspace2
+assign [class="Alacritty"] $workspace3
