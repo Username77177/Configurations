@@ -1,0 +1,157 @@
+
+bindsym $mod+Shift+y		exec --no-startup-id i3resize left
+
+bindsym $mod+Shift+u		exec --no-startup-id i3resize down
+
+bindsym $mod+Shift+i		exec --no-startup-id i3resize up
+
+bindsym $mod+Shift+o		exec --no-startup-id i3resize right
+
+# Margins
+for_window [class="^.*"] border pixel 2
+gaps inner 10
+gaps outer 2
+
+# Терминал
+set $term --no-startup-id $TERMINAL
+
+# Обои
+exec_always feh --bg-scale ~/.wallpaper.jpg
+
+# Сетуем клавишу мода на Win
+set $mod Mod4
+
+# Шрифт
+font pango:Fira Code 10
+
+# Клавиша мода + мышка для того чтобы перетаскивать окна в плаваюшем режиме
+floating_modifier $mod
+
+# Мод + Enter чтобы запустить терминал
+bindsym $mod+Return exec i3-sensible-terminal
+
+#                                       #
+# Впредь клавиша Мода буду писать как М #
+#					                    #
+
+# М + q для того чтобы убить процесс окна
+bindsym $mod+q kill
+
+# M + d для того, чтобы выбрать приложение
+# Тут можно заменить приложение для выбора приложений
+bindsym $mod+d exec dmenu_run
+
+# Перемещение между окнами
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# Перемещать окна между рабочими областями
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# M + Alt + v
+# разделить следущее по горизонтали
+bindsym $mod+c split h
+
+# M + v
+# разделить следущее окно по вертикали
+bindsym $mod+v split v
+
+# M + f
+# открыть окно на полный экран
+bindsym $mod+f fullscreen toggle
+
+# Поменять вид контейнера
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# Поменять режим с тиллинга на плавающий и обратно
+# bindsym alt+shift floating toggle
+
+# Сменить фокус с тиллингового на плавающее дочернее окно
+# bindsym $mod+Shift focus mode_toggle
+
+# Фокус на окно-родитель (контейнер)
+bindsym $mod+a focus parent
+
+# Фокус на дочерние окна данного контейнера
+#bindsym $mod+Shift+d focus child
+
+
+###
+# Переменные, которые потом будут использоваться повсеместно
+#
+#
+set $workspace1 "1: Web And Telegram"
+set $workspace2 "2: Editors"
+set $workspace3 "3: Terminals"
+###
+
+
+# Переключение между рабочими областями 
+bindsym $mod+1 workspace $workspace1
+bindsym $mod+2 workspace $workspace2
+bindsym $mod+3 workspace $workspace3
+
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# M + Shift + цифра
+# Перемещать выделенное окно между областями
+bindsym $mod+Shift+1 move container to workspace $workspace1
+bindsym $mod+Shift+2 move container to workspace $workspace2
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+# M + Shift + C перезагрузить конфигурацию
+bindsym $mod+Shift+c reload
+
+# M + r
+# Перезагрузить i3
+bindsym $mod+r restart
+
+# M + e
+# Выйти из профиля ( Logout )
+# bindsym $mod+e exec logout
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+# bindsym $mod+r mode "resize"
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+        status_command i3status
+}
