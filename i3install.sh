@@ -42,7 +42,7 @@ cd ../xwinwrap
 make
 sudo make install
 make clean
-
+sudo apt install gifsicle
 
 #    _            _     ____                _
 #   / \    _ __  | |_  |  _ \   __ _   ___ | | __  __ _   __ _   ___  ___

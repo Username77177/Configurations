@@ -81,7 +81,8 @@ bindsym $mod+Return exec i3-sensible-terminal
 
 bindsym Control+Print exec gnome-screenshot -i
 bindsym $mod+Shift+f exec firefox
-bindsym $mod+Shift+e exec emacs
+bindsym $mod+Shift+e exec "emacs -fs -fn 'Fira Code'"
+
 
 # М + q для того чтобы убить процесс окна
 bindsym $mod+q kill
@@ -90,7 +91,7 @@ bindsym $mod+q kill
 # Тут можно заменить приложение для выбора приложений
 ##bindsym $mod+d exec dmenu_run##
 #bindsym mod1+Tab exec "rofi -show combi run,window -columns 1 -lines 20 -padding 18 -width 80 -show-icons -icon-theme Mojave-CT-Night-Mode"
-bindsym mod1+Tab exec "rofi -show drun -show-icons -drun-icon-theme Mojave-CT-Night-Mode"
+bindsym $mod+d exec "rofi -show drun -show-icons -drun-icon-theme Mojave-CT-Night-Mode"
 # M + Shift + Q для выхода
 bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'Really, exit?' -b 'Yes' 'i3-msg exit'"
 
@@ -104,10 +105,10 @@ bindsym $mod+k focus up
 bindsym $mod+l focus right
 
 # Перемещать окна между рабочими областями
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
+bindsym $mod+Shift+h move left 20px
+bindsym $mod+Shift+j move down 20px
+bindsym $mod+Shift+k move up 20px
+bindsym $mod+Shift+l move right 20px
 
 # M + Alt + v
 # разделить следущее по горизонтали
@@ -117,18 +118,18 @@ bindsym $mod+v split h
 # разделить следущее окно по вертикали
 bindsym $mod+c split v
 
-# M + f
+# M + Numpad0
 # открыть окно на полный экран
-bindsym $mod+f fullscreen toggle
+bindcode $mod+90 fullscreen toggle
+# В основном, везде и так есть FullScreen на F11
 
 # Поменять вид контейнера
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
-#TODO!
 # Поменять режим с тиллинга на плавающий и обратно
-bindsym $mod+tab floating toggle
+bindsym $mod+f floating toggle
 
 # Сменить фокус с тиллингового на плавающее дочернее окно
 # bindsym $mod+Shift focus mode_toggle
@@ -139,35 +140,46 @@ bindsym $mod+a focus parent
 # Фокус на дочерние окна данного контейнера
 #bindsym $mod+Shift+d focus child
 
-
 # Переключение между рабочими областями
-bindsym mod1+1 workspace $workspace1
-bindsym mod1+2 workspace $workspace2
-bindsym mod1+3 workspace $workspace3
+bindcode $mod+87 workspace $workspace1
+bindcode $mod+88 workspace $workspace2
+bindcode $mod+89 workspace $workspace3
+bindcode $mod+83 workspace $ws4
+bindcode $mod+84 workspace $ws5
+bindcode $mod+85 workspace 6
+bindcode $mod+79 workspace 7
+bindcode $mod+80 workspace 8
+bindcode $mod+81 workspace 9
 
-bindsym mod1+4 workspace $ws4
-bindsym mod1+5 workspace $ws5
-bindsym mod1+6 workspace 6
-bindsym mod1+7 workspace 7
-bindsym mod1+8 workspace 8
-bindsym mod1+9 workspace 9
-bindsym mod1+0 workspace 10
+# Переключение между последними рабочими областями
+bindsym $mod+Tab workspace back_and_forth
+
+# Второй вариант с обычными цифрами, а не через NumLock цифры
+#bindsym mod1+1 workspace $workspace1
+#bindsym mod1+3 workspace $workspace3
+#bindsym mod1+2 workspace $workspace2
+#bindsym mod1+4 workspace $ws4
+#bindsym mod1+5 workspace $ws5
+#bindsym mod1+6 workspace 6
+#bindsym mod1+7 workspace 7
+#bindsym mod1+8 workspace 8
+#bindsym mod1+9 workspace 9
+#bindsym mod1+0 workspace 10
 
 # Показать экран без ничего
 bindsym $mod+x workspace Desktop
 
 # M + Shift + цифра
 # Перемещать выделенное окно между областями
-bindsym mod1+Shift+1 move container to workspace $workspace1
-bindsym mod1+Shift+2 move container to workspace $workspace2
-bindsym mod1+Shift+3 move container to workspace $workspace3
-bindsym mod1+Shift+4 move container to workspace $ws4
-bindsym mod1+Shift+5 move container to workspace $ws5
-bindsym mod1+Shift+6 move container to workspace 6
-bindsym mod1+Shift+7 move container to workspace 7
-bindsym mod1+Shift+8 move container to workspace 8
-bindsym mod1+Shift+9 move container to workspace 9
-bindsym mod1+Shift+0 move container to workspace 10
+bindcode mod1+50+87 move container to workspace $workspace1
+bindcode mod1+50+88 move container to workspace $workspace2
+bindcode mod1+50+Shift+89 move container to workspace $workspace3
+bindcode mod1+50+Shift+83 move container to workspace $ws4
+bindcode mod1+50+Shift+84 move container to workspace $ws5
+bindcode mod1+50+Shift+85 move container to workspace 6
+bindcode mod1+50+Shift+79 move container to workspace 7
+bindcode mod1+50+Shift+80 move container to workspace 8
+bindcode mod1+50+Shift+81 move container to workspace 9
 
 # M + Shift + C перезагрузить конфигурацию
 bindsym $mod+Shift+c reload
@@ -225,25 +237,17 @@ gaps outer 2 # Отступы от экрана
 # Movement ( передвижение окон и их размерность )
 
 
-# resize window (you can also use the mouse for that)
-mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
+bindsym $mod+Ctrl+Left resize shrink width 20 px or 20 ppt
+bindsym $mod+Ctrl+Down resize grow height 20 px or 20 ppt
+bindsym $mod+Ctrl+Up resize shrink height 20 px or 20 ppt
+bindsym $mod+Ctrl+Right resize grow width 20 px or 20 ppt
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
+bindsym $mod+Ctrl+h resize shrink width 20 px or 20 ppt
+bindsym $mod+Ctrl+j resize grow height 20 px or 20 ppt
+bindsym $mod+Ctrl+k resize shrink height 20 px or 20 ppt
+bindsym $mod+Ctrl+l resize grow width 20 px or 20 ppt
 
-        # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
 
-bindsym $mod+shift+r mode "resize"
 ############################################################################# Конец раздела передвижения и размещения
 
 # ____
@@ -268,7 +272,7 @@ status_command i3status
 
 position top
 
-separator_symbol " "
+separator_symbol "|"
 
 colors {
     background #2d3436 # Фон всей панели
@@ -287,6 +291,16 @@ colors {
 }
 # У самого последнего разметка: Фон, шрифт, граница
 }
+
+#TODO темы для окон
+# Заготовка уже есть
+# colour of border, background, text, indicator, and child_border
+client.focused              #bf616a #2f343f #d8dee8 #bf616a #d8dee8
+client.focused_inactive     #2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.unfocused            #2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.urgent               #2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.placeholder          #2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.background           #2f343f
 ############################################ Конец раздела топбара
 
 # ____          _
