@@ -20,35 +20,35 @@ order += "volume master"
 order += "battery 1"
 order += "tztime local"
 cpu_temperature 0 {
-        format = "<span background='#d63031' color='#ffffff'> 💻CPU: </span><span background='#dfe6e9'> %degrees°C </span>"
+        format = "<span background='#d63031' color='#ffffff'> 💻CPU: %degrees°C </span>"
         path = "/sys/class/thermal/thermal_zone0/temp"
 }
 
 disk "/" {
-        format = "<span background='#81ecec' color='#000000'> 💿 Space: </span><span background='#dfe6e9'>  %free Free </span>"
+        format = "<span background='#81ecec' color='#000000'> 💿 Space: %free Free </span>"
 }
 
 wireless _first_ {
-	format_up = "<span background='#bacc78'>    </span><span background='#dfe6e9'>  %essid |%quality </span>"
+	format_up = "<span background='#bacc78'>    %essid |%quality </span>"
 	format_down = " <span background='#fab1a0'>    </span> "
 }
 
 volume master {
-        format = "<span background='#74b9ff' color='#ffffff'> 🔊 </span><span background='#dfe6e9'> %volume </span>"
-        format_muted = "<span background='#ff7675' color='#ffffff'> 🔈 </span><span background='#dfe6e9'> Muted </span>"
+        format = "<span background='#74b9ff' color='#ffffff'> 🔊 %volume </span>"
+        format_muted = "<span background='#ff7675' color='#ffffff'> 🔈 Muted </span>"
         device = "default"
         mixer = "Master"
         mixer_idx = 0
 }
 
 tztime local {
-		format = "<span background='#a29bfe' color='#ffffff'> ⏱ </span><span background='#dfe6e9'> %time </span>"
+		format = "<span background='#a29bfe' color='#ffffff'> ⏱ %time </span>"
 		format_time = "%a %-d %b %H:%M"
 }
 
 battery 1 {
 	last_full_capacity = true
-        format = "<span background='#30336b' color='#ffffff'> %status </span><span background='#dfe6e9'> %percentage </span>"
+        format = "<span background='#30336b' color='#ffffff'> %status %percentage </span>"
         format_down = "❌ No Battery"
         status_chr = "⚡ Charging"
         status_bat = "🔋 Battery"
@@ -59,5 +59,5 @@ battery 1 {
 }
 
 cpu_usage {
-	format = "<span background='#f0932b' color='#ffffff'> 🍑 CPU use: </span><span background='#dfe6e9'> %usage </span>"
+	format = "<span background='#f0932b' color='#ffffff'> 🍑 CPU use: %usage </span>"
 }

@@ -59,8 +59,6 @@ exec xwinwrap -g 1920x1080 -ov -ni -s -nf -- gifview -w WID ~/4.gif -a #2
 # Шрифт
 font pango: Fira Code 10
 
-# Мод + Enter чтобы запустить терминал
-bindsym $mod+Return exec i3-sensible-terminal
 
 ######################################################### Конец раздела фич
 
@@ -75,6 +73,9 @@ bindsym $mod+Return exec i3-sensible-terminal
 #                                       #
 # Впредь клавиша Мода буду писать как М #
 #					                    #
+
+# Мод + Enter чтобы запустить терминал
+bindsym $mod+Return exec i3-sensible-terminal
 
 bindsym $mod+Shift+f exec firefox
 bindsym $mod+Shift+e exec emacs
@@ -107,11 +108,11 @@ bindsym $mod+Shift+l move right
 
 # M + Alt + v
 # разделить следущее по горизонтали
-bindsym $mod+c split h
+bindsym $mod+v split h
 
 # M + v
 # разделить следущее окно по вертикали
-bindsym $mod+v split v
+bindsym $mod+c split v
 
 # M + f
 # открыть окно на полный экран
@@ -123,7 +124,7 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # Поменять режим с тиллинга на плавающий и обратно
-# bindsym alt+shift floating toggle
+bindsym mod1+shift floating toggle
 
 # Сменить фокус с тиллингового на плавающее дочернее окно
 # bindsym $mod+Shift focus mode_toggle
@@ -229,14 +230,14 @@ mode "resize" {
 }
 
 # bindsym $mod+r mode "resize"
-#############################################################################
+############################################################################# Конец раздела передвижения и размещения
 
 # ____
 #| __ )   __ _  _ __
 #|  _ \  / _` || '__|
 #| |_) || (_| || |
 #|____/  \__,_||_|
-# Настройка топ-бара ( Polybar )
+# Настройка топ-бара ( i3-status )
 
 
 #bar {
@@ -248,20 +249,31 @@ mode "resize" {
 
 # Color Palette https://flatuicolors.com/palette/us
 bar {
-        colors {
-        background #2d3436 # Фон всей панели
-        separator #636e72 # Фон разделителей
-        statusline #000000 # Цвет текста дополнительной панели
 
-        # Цвет: Граница, фон, текст
-        inactive_workspace      #2f343f #403952 #dfe6e9
-        focused_workspace       #6c5cc9 #6c5ce7 #e9f1f5
-        active_workspace        #000000 #000000 #ffffff
-        urgent_workspacei       #ffffff #ffffff #ffffff
-    }
-        status_command i3status
+status_command i3status
+
+position top
+
+separator_symbol " "
+
+colors {
+    background #2d3436 # Фон всей панели
+    separator #636e72 # Фон разделителей
+    statusline #000000 # Цвет текста дополнительной панели
+
+    # Цвет: Граница, фон, текст
+    #Неактивные бары
+    #Бар на котором вы сейас находитесь
+    #?
+    #Бар на котором новое приложение
+    inactive_workspace      #2f343f #403952 #dfe6e9
+    focused_workspace       #6c5cc9 #6c5ce7 #e9f1f5
+    active_workspace        #000000 #000000 #ffffff
+    urgent_workspacei       #ff7979 #403952 #ffffff
 }
-############################################
+# У самого последнего разметка: Фон, шрифт, граница
+}
+############################################ Конец раздела топбара
 
 # ____          _
 #|  _ \  _   _ | |  ___  ___
