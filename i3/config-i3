@@ -1,4 +1,42 @@
-### Some Features
+# _  _____                       __  _
+#(_)|___ /   ___   ___   _ __   / _|(_)  __ _
+#| |  |_ \  / __| / _ \ | '_ \ | |_ | | / _` |
+#|_||____/  \___| \___/ |_| |_||_|  |_| \__, |
+#                                       |___/
+# ___                                                                        _______  _______    _  _______  _______
+#(  _`\                                                                     (_____  )(_____  ) /' )(_____  )(_____  )
+#| (_) ) _   _     _   _   ___    __   _ __   ___     _ _   ___ ___     __       /'/'     /'/'(_, |     /'/'     /'/'
+#|  _ <'( ) ( )   ( ) ( )/',__) /'__`\( '__)/' _ `\ /'_` )/' _ ` _ `\ /'__`\   /'/'     /'/'    | |   /'/'     /'/'
+#| (_) )| (_) |   | (_) |\__, \(  ___/| |   | ( ) |( (_| || ( ) ( ) |(  ___/ /'/'     /'/'      | | /'/'     /'/'
+#(____/'`\__, |   `\___/'(____/`\____)(_)   (_) (_)`\__,_)(_) (_) (_)`\____)(_/      (_/        (_)(_/      (_/
+#       ( )_| |
+#       `\___/'
+
+#######################################################################################################################
+#__     __              _         _      _
+#\ \   / /  __ _  _ __ (_)  __ _ | |__  | |  ___  ___
+# \ \ / /  / _` || '__|| | / _` || '_ \ | | / _ \/ __|
+#  \ V /  | (_| || |   | || (_| || |_) || ||  __/\__ \
+#   \_/    \__,_||_|   |_| \__,_||_.__/ |_| \___||___/
+#Variables
+
+###
+# Переменные, которые потом будут использоваться повсеместно
+#
+#
+set $workspace1 "1: Web And Telegram"
+set $workspace2 "2: Editors"
+set $workspace3 "3: Terminals"
+###
+
+
+# _____               _
+#|  ___|  ___   __ _ | |_  _   _  _ __   ___  ___
+#| |_    / _ \ / _` || __|| | | || '__| / _ \/ __|
+#|  _|  |  __/| (_| || |_ | |_| || |   |  __/\__ \
+#|_|     \___| \__,_| \__| \__,_||_|    \___||___/
+#Features ( полезные штуки )
+
 # Сетуем клавишу мода на Win
 set $mod Mod4
 
@@ -8,22 +46,32 @@ set $term --no-startup-id $TERMINAL
 # Меняем язык через Mod + Space
 exec --no-startup-id setxkbmap -model pc105 -layout us,ru -option grp:win_space_toggle
 
-# Terminal always spawn in 3-rd workspace
+##### Автозапуск приложений
 exec alacritty
 exec emacs26
+#####
 
 # Обои
-exec_always feh --bg-scale ~/.wallpaper.jpg
+# Первый вариант просто сетует обои, второй же делает обои из гифок
+# exec_always feh --bg-scale ~/.wallpaper.jpg #1
+exec xwinwrap -g 1920x1080 -ov -ni -s -nf -- gifview -w WID ~/4.gif -a #2
 
 # Шрифт
-font pango:Fira Code 10
+font pango: Fira Code 10
 
 # Мод + Enter чтобы запустить терминал
 bindsym $mod+Return exec i3-sensible-terminal
 
-###
+######################################################### Конец раздела фич
 
-### Keybindings
+# ____   _             _
+#| __ ) (_) _ __    __| | ___
+#|  _ \ | || '_ \  / _` |/ __|
+#| |_) || || | | || (_| |\__ \
+#|____/ |_||_| |_| \__,_||___/
+#Binds (сочетания клавиш)
+
+
 #                                       #
 # Впредь клавиша Мода буду писать как М #
 #					                    #
@@ -39,21 +87,11 @@ bindsym $mod+q kill
 ##bindsym $mod+d exec dmenu_run##
 bindsym mod1+Tab exec "rofi -show combi run,window"
 
+# M + Shift + Q для выхода
 bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'Really, exit?' -b 'Yes' 'i3-msg exit'"
-
-###
-
-### i3-gaps
-  # Margins
-for_window [class="^.*"] border pixel 2
-gaps inner 10
-gaps outer 2
-
-###
 
 # Клавиша мода + мышка для того чтобы перетаскивать окна в плаваюшем режиме
 floating_modifier $mod
-
 
 # Перемещение между окнами
 bindsym $mod+h focus left
@@ -96,17 +134,7 @@ bindsym $mod+a focus parent
 # Фокус на дочерние окна данного контейнера
 #bindsym $mod+Shift+d focus child
 
-###
-# Переменные, которые потом будут использоваться повсеместно
-#
-#
-set $workspace1 "1: Web And Telegram"
-set $workspace2 "2: Editors"
-set $workspace3 "3: Terminals"
-###
-
-
-# Переключение между рабочими областями 
+# Переключение между рабочими областями
 bindsym $mod+1 workspace $workspace1
 bindsym $mod+2 workspace $workspace2
 bindsym $mod+3 workspace $workspace3
@@ -143,6 +171,45 @@ bindsym $mod+r restart
 # Выйти из профиля ( Logout )
 # bindsym $mod+e exec logout
 
+### Звук
+# Thanks, guys
+# https://unix.stackexchange.com/questions/21089/how-to-use-command-line-to-change-volume
+# https://www.reddit.com/r/i3wm/comments/3a6nh3/help_how_to_use_function_keys_in_i3_config/
+
+bindsym XF86AudioMute exec amixer -D pulse sset Master toggle
+bindsym XF86AudioRaiseVolume exec amixer sset Master 5%+
+bindsym XF86AudioLowerVolume exec amixer sset Master 5%-
+
+### Яркость экрана
+bindsym XF86MonBrightnessUp exec xbacklight -inc 5 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightness
+
+############################################################### Конец раздела биндов
+
+# ___  _____          ____
+#|_ _||___ /         / ___|  __ _  _ __   ___
+# | |   |_ \  _____ | |  _  / _` || '_ \ / __|
+# | |  ___) ||_____|| |_| || (_| || |_) |\__ \
+#|___||____/         \____| \__,_|| .__/ |___/
+#                                 |_|
+#i3-gaps ( дополнение для того, чтобы между окнами было пространство )
+
+
+# Margins
+for_window [class="^.*"] border pixel 2 # Рамка для всех окон в 2px
+gaps inner 10 # Отступы между окнами
+gaps outer 2 # Отступы от экрана
+
+################################################################# i3-gaps end
+
+# __  __                                              _
+#|  \/  |  ___  __   __  ___  _ __ ___    ___  _ __  | |_
+#| |\/| | / _ \ \ \ / / / _ \| '_ ` _ \  / _ \| '_ \ | __|
+#| |  | || (_) | \ V / |  __/| | | | | ||  __/| | | || |_
+#|_|  |_| \___/   \_/   \___||_| |_| |_| \___||_| |_| \__|
+# Movement ( передвижение окон и их размерность )
+
+
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
@@ -162,12 +229,47 @@ mode "resize" {
 }
 
 # bindsym $mod+r mode "resize"
+#############################################################################
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
+# ____
+#| __ )   __ _  _ __
+#|  _ \  / _` || '__|
+#| |_) || (_| || |
+#|____/  \__,_||_|
+# Настройка топ-бара ( Polybar )
+
+
+#bar {
+#position top
+#status_command i3status
+#font pango:Noto Sans 12
+###}
+
+
+# Color Palette https://flatuicolors.com/palette/us
 bar {
+        colors {
+        background #2d3436 # Фон всей панели
+        separator #636e72 # Фон разделителей
+        statusline #000000 # Цвет текста дополнительной панели
+
+        # Цвет: Граница, фон, текст
+        inactive_workspace      #2f343f #403952 #dfe6e9
+        focused_workspace       #6c5cc9 #6c5ce7 #e9f1f5
+        active_workspace        #000000 #000000 #ffffff
+        urgent_workspacei       #ffffff #ffffff #ffffff
+    }
         status_command i3status
 }
+############################################
+
+# ____          _
+#|  _ \  _   _ | |  ___  ___
+#| |_) || | | || | / _ \/ __|
+#|  _ < | |_| || ||  __/\__ \
+#|_| \_\ \__,_||_| \___||___/
+#Rules ( правила )
+
 
 assign [class="Firefox"] $workspace1
 assign [class="Emacs"] $workspace2

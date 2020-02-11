@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Some good links
+# Полезные ссылки
 # https://github.com/addy-dclxvi/i3-starterpack
 # https://i3wm.org/docs/userguide.html
 # https://wiki.archlinux.org/index.php/I3_(%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9)#%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0
@@ -9,8 +9,15 @@ sudo apt install compton feh rofi lxappearance scrot i3
 # feh - выбор обоев
 # Rofi - лаунчер программ (альтернатива dmenu)
 # lxappearance - иконки, шрифты и многое другое
+#  ____  _  _    _             _       ____                _
+# / ___|(_)| |_ | |__   _   _ | |__   |  _ \   __ _   ___ | | __  __ _   __ _   ___  ___
+#| |  _ | || __|| '_ \ | | | || '_ \  | |_) | / _` | / __|| |/ / / _` | / _` | / _ \/ __|
+#| |_| || || |_ | | | || |_| || |_) | |  __/ | (_| || (__ |   < | (_| || (_| ||  __/\__ \
+# \____||_| \__||_| |_| \__,_||_.__/  |_|     \__,_| \___||_|\_\ \__,_| \__, | \___||___/
+#                                                                       |___/
 
-# Installing i3-gaps
+
+# i3-gaps Нужен для того, чтобы между окнами были отступы
 mkdir $HOME/gitinstalled
 sudo apt install libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev autoconf xutils-dev libtool libxcb-shape0-dev
 sudo apt-get install libxcb-xrm-dev
@@ -26,10 +33,25 @@ cd build
 make
 sudo make install
 
-# Installing xwinwrap (Git animated wallpaper)
-sudo apt-get install xorg-dev build-essential libx11-dev x11proto-xext-dev libxrender-dev libxext-dev
+# xwinwrap - ПО, которое позволяет ставить gif файлы на рабочий стол
+sudo apt-get install xorg-dev build-essential libx11-dev x11proto-xext-dev libxrender-dev libxext-dev gifsicle
 git clone https://github.com/ujjwal96/xwinwrap.git ~/gitinstalled/xwinwrap
 cd xwinwrap
 make
 sudo make install
 make clean
+
+
+#    _            _     ____                _
+#   / \    _ __  | |_  |  _ \   __ _   ___ | | __  __ _   __ _   ___  ___
+#  / _ \  | '_ \ | __| | |_) | / _` | / __|| |/ / / _` | / _` | / _ \/ __|
+# / ___ \ | |_) || |_  |  __/ | (_| || (__ |   < | (_| || (_| ||  __/\__ \
+#/_/   \_\| .__/  \__| |_|     \__,_| \___||_|\_\ \__,_| \__, | \___||___/
+#         |_|                                            |___/
+
+# i3status, dunst
+sudo apt install fonts-noto # Noto Шрифты для топбара
+sudo apt install i3status
+cd ~/Configuration/i3/
+mkdir ~/.config/i3status
+ln -sfr ~/Configuration/i3/config-i3-statusbar ~/.config/i3status/config
