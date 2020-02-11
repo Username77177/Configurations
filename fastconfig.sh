@@ -144,6 +144,6 @@ echo "Maybe install some languages? [1 - yes or 0 - no]: "
 read yon
 if [[ $yon = "1" ]]
 then
-	sudo apt install python3
-	python3 -c "from ProgrammerTweaker-modules import *; p = package_man(); install_programming_languages(p)"
+	sudo apt install python3 python3-pip python-pip
+	python3 -c "from ProgrammerTweaker_modules import *; p = package_man(); install_programming_languages(p)"
 fi
