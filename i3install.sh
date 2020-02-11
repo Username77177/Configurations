@@ -38,7 +38,7 @@ sudo make install
 # xwinwrap - ПО, которое позволяет ставить gif файлы на рабочий стол
 sudo apt-get install xorg-dev build-essential libx11-dev x11proto-xext-dev libxrender-dev libxext-dev gifsicle
 git clone https://github.com/ujjwal96/xwinwrap.git ~/gitinstalled/xwinwrap
-cd xwinwrap
+cd ../xwinwrap
 make
 sudo make install
 make clean
@@ -76,6 +76,7 @@ ln -sfr ~/Configuration/i3/config-i3-statusbar ~/.config/i3status/config
 
 # Конфигурация i3
 echo "Конфигурация i3"
+mkdir ~/.config/i3
 ln -sfr ~/Configuration/i3/config-i3 ~/.config/i3/config
 echo "Конфигурация топ-бара i3 (i3-statusbar)"
 ln -sfr ~/Configuration/i3/config-i3-statusbar-version2 ~/.config/i3status/config
