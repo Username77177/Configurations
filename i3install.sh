@@ -55,9 +55,9 @@ sudo add-apt-repository ppa:agornostal/ulauncher
 # i3status
 sudo apt install fonts-noto # Noto Шрифты для топбара
 sudo apt install i3status
-cd ~/Configuration/i3/
+cd ~/Configurations/i3/
 mkdir ~/.config/i3status
-ln -sfr ~/Configuration/i3/config-i3-statusbar ~/.config/i3status/config
+ln -sfr ~/Configurations/i3/config-i3-statusbar ~/.config/i3status/config
 
 
 # __  __
@@ -77,11 +77,11 @@ ln -sfr ~/Configuration/i3/config-i3-statusbar ~/.config/i3status/config
 # Конфигурация i3
 echo "Конфигурация i3"
 mkdir ~/.config/i3
-ln -sfr ~/Configuration/i3/config-i3 ~/.config/i3/config
+ln -sfr ~/Configurations/i3/config-i3 ~/.config/i3/config
 echo "Конфигурация топ-бара i3 (i3-statusbar)"
-ln -sfr ~/Configuration/i3/config-i3-statusbar-version2 ~/.config/i3status/config
+ln -sfr ~/Configurations/i3/config-i3-statusbar-version2 ~/.config/i3status/config
 
-ln -sfr ~/Configuration/i3/XRESOURCES-for-all ~/.Xresources
+ln -sfr ~/Configurations/i3/XRESOURCES-for-all ~/.Xresources
 
 
 #####CLEANING FOLDER###
@@ -91,8 +91,8 @@ echo "Нужно очистить папку с конфигурацией от 
 read yon
 if [[ $yon = "1" ]]
 then
-    rm ~/Configuration/TODO
-    rm -rf ~/Configuration/img
-    rm -rf ~/Configuration/fastconfig*
-    rm -rf ~/Configuration/readytopush.sh
+    rm ~/Configurations/TODO
+    rm -rf ~/Configurations/img
+    rm -rf ~/Configurations/fastconfig*
+    rm -rf ~/Configurations/readytopush.sh
 fi

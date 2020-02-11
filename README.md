@@ -8,7 +8,7 @@
 Созданы они для того, что стандартные настройки показались мне достаточно грубыми. В этом репозитории почти все файлы заточены на vi-подобные хоткеи
 
 ```bash
-git clone https://www.github.com/username77177/Configurations/ ~/Configuration
+git clone https://www.github.com/username77177/Configurations/ ~/Configurations
 ```
 
 # О i3
