@@ -27,6 +27,8 @@
 set $workspace1 "1: Web And Telegram"
 set $workspace2 "2: Editors"
 set $workspace3 "3: Terminals"
+set $ws4 "4: File Manager"
+set $ws5 "5: Other Things"
 ###
 
 
@@ -77,6 +79,7 @@ font pango: Fira Code 10
 # Мод + Enter чтобы запустить терминал
 bindsym $mod+Return exec i3-sensible-terminal
 
+bindsym Control+Print exec gnome-screenshot -i
 bindsym $mod+Shift+f exec firefox
 bindsym $mod+Shift+e exec emacs
 
@@ -86,8 +89,8 @@ bindsym $mod+q kill
 # Alt + Tab для того, чтобы выбрать приложение
 # Тут можно заменить приложение для выбора приложений
 ##bindsym $mod+d exec dmenu_run##
-bindsym mod1+Tab exec "rofi -show combi run,window"
-
+#bindsym mod1+Tab exec "rofi -show combi run,window -columns 1 -lines 20 -padding 18 -width 80 -show-icons -icon-theme Mojave-CT-Night-Mode"
+bindsym mod1+Tab exec "rofi -show drun -show-icons -drun-icon-theme Mojave-CT-Night-Mode"
 # M + Shift + Q для выхода
 bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'Really, exit?' -b 'Yes' 'i3-msg exit'"
 
@@ -123,8 +126,9 @@ bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
+#TODO!
 # Поменять режим с тиллинга на плавающий и обратно
-bindsym mod1+shift floating toggle
+bindsym $mod+tab floating toggle
 
 # Сменить фокус с тиллингового на плавающее дочернее окно
 # bindsym $mod+Shift focus mode_toggle
@@ -135,31 +139,35 @@ bindsym $mod+a focus parent
 # Фокус на дочерние окна данного контейнера
 #bindsym $mod+Shift+d focus child
 
-# Переключение между рабочими областями
-bindsym $mod+1 workspace $workspace1
-bindsym $mod+2 workspace $workspace2
-bindsym $mod+3 workspace $workspace3
 
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+# Переключение между рабочими областями
+bindsym mod1+1 workspace $workspace1
+bindsym mod1+2 workspace $workspace2
+bindsym mod1+3 workspace $workspace3
+
+bindsym mod1+4 workspace $ws4
+bindsym mod1+5 workspace $ws5
+bindsym mod1+6 workspace 6
+bindsym mod1+7 workspace 7
+bindsym mod1+8 workspace 8
+bindsym mod1+9 workspace 9
+bindsym mod1+0 workspace 10
+
+# Показать экран без ничего
+bindsym $mod+x workspace Desktop
 
 # M + Shift + цифра
 # Перемещать выделенное окно между областями
-bindsym $mod+Shift+1 move container to workspace $workspace1
-bindsym $mod+Shift+2 move container to workspace $workspace2
-bindsym $mod+Shift+3 move container to workspace $workspace3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
+bindsym mod1+Shift+1 move container to workspace $workspace1
+bindsym mod1+Shift+2 move container to workspace $workspace2
+bindsym mod1+Shift+3 move container to workspace $workspace3
+bindsym mod1+Shift+4 move container to workspace $ws4
+bindsym mod1+Shift+5 move container to workspace $ws5
+bindsym mod1+Shift+6 move container to workspace 6
+bindsym mod1+Shift+7 move container to workspace 7
+bindsym mod1+Shift+8 move container to workspace 8
+bindsym mod1+Shift+9 move container to workspace 9
+bindsym mod1+Shift+0 move container to workspace 10
 
 # M + Shift + C перезагрузить конфигурацию
 bindsym $mod+Shift+c reload
@@ -184,6 +192,12 @@ bindsym XF86AudioLowerVolume exec amixer sset Master 5%-
 ### Яркость экрана
 bindsym XF86MonBrightnessUp exec xbacklight -inc 5 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightness
+
+### Настройка переключения музыки
+bindsym XF86AudioNext exec mpc next
+bindsym XF86AudioPrev exec mpc prev
+bindsym XF86AudioPlay exec mpc toggle
+bindsym XF86AudioStop exec mpc stop
 
 ############################################################### Конец раздела биндов
 
@@ -229,7 +243,7 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
-# bindsym $mod+r mode "resize"
+bindsym $mod+shift+r mode "resize"
 ############################################################################# Конец раздела передвижения и размещения
 
 # ____
@@ -249,7 +263,7 @@ mode "resize" {
 
 # Color Palette https://flatuicolors.com/palette/us
 bar {
-
+i3bar_command i3bar --transparency
 status_command i3status
 
 position top
@@ -282,7 +296,14 @@ colors {
 #|_| \_\ \__,_||_| \___||___/
 #Rules ( правила )
 
-
-assign [class="Firefox"] $workspace1
-assign [class="Emacs"] $workspace2
+assign [class="Firefox|TelegramDesktop"] $workspace1
+assign [class="Emacs|Gvim|vim|Code"] $workspace2
 assign [class="Alacritty"] $workspace3
+assign [class="Nautilus"] $ws4
+
+assign [class="Alacritty|Firefox|TelegramDesktop|Code|Emacs|Nautilus"] focus
+
+##################################
+# Внегласные правила
+# Все приложения запускаются через Win + Shift + Первая буква приложения
+# 1 рабочий стол - telegram и firefox, 2 - редакторы, 3 - терминалы, 4 - файловые менеджеры

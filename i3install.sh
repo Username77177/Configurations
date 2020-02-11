@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Иконки которые нужны для нормального функционирования rofi
+# https://www.pling.com/p/1210856/#files-panel
 # Полезные ссылки
 # https://github.com/addy-dclxvi/i3-starterpack
 # https://i3wm.org/docs/userguide.html
@@ -48,10 +50,48 @@ make clean
 # / ___ \ | |_) || |_  |  __/ | (_| || (__ |   < | (_| || (_| ||  __/\__ \
 #/_/   \_\| .__/  \__| |_|     \__,_| \___||_|\_\ \__,_| \__, | \___||___/
 #         |_|                                            |___/
+sudo add-apt-repository ppa:agornostal/ulauncher
 
-# i3status, dunst
+# i3status
 sudo apt install fonts-noto # Noto Шрифты для топбара
 sudo apt install i3status
 cd ~/Configuration/i3/
 mkdir ~/.config/i3status
 ln -sfr ~/Configuration/i3/config-i3-statusbar ~/.config/i3status/config
+
+
+# __  __
+#|  \/  | _   _
+#| |\/| || | | |
+#| |  | || |_| |
+#|_|  |_| \__, |
+#         |___/
+#  ____                 __  _                             _    _
+# / ___|  ___   _ __   / _|(_)  __ _  _   _  _ __   __ _ | |_ (_)  ___   _ __   ___
+#| |     / _ \ | '_ \ | |_ | | / _` || | | || '__| / _` || __|| | / _ \ | '_ \ / __|
+#| |___ | (_) || | | ||  _|| || (_| || |_| || |   | (_| || |_ | || (_) || | | |\__ \
+# \____| \___/ |_| |_||_|  |_| \__, | \__,_||_|    \__,_| \__||_| \___/ |_| |_||___/
+#                              |___/
+
+
+# Конфигурация i3
+echo "Конфигурация i3"
+ln -sfr ~/Configuration/i3/config-i3 ~/.config/i3/config
+echo "Конфигурация топ-бара i3 (i3-statusbar)"
+ln -sfr ~/Configuration/i3/config-i3-statusbar-version2 ~/.config/i3status/config
+
+ln -sfr ~/Configuration/i3/XRESOURCES-for-all ~/.Xresources
+
+
+#####CLEANING FOLDER###
+#####ОЧИСТКА ПАПКИ ОТ МУСОРА###
+
+echo "Нужно очистить папку с конфигурацией от мусора? (1 - Да, 0 - Нет)"
+read yon
+if [[ $yon = "1" ]]
+then
+    rm ~/Configuration/TODO
+    rm -rf ~/Configuration/img
+    rm -rf ~/Configuration/fastconfig*
+    rm -rf ~/Configuration/readytopush.sh
+fi

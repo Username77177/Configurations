@@ -7,7 +7,7 @@ window:
   dynamic_padding: false
   decorations: full
   #Режим полного экрана
-  startup_mode: Windowed
+  startup_mode: Fullscreen 
   scrolling:
         history: 10000
         multiplier: 3
