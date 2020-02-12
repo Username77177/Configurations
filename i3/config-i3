@@ -165,8 +165,11 @@ bindcode $mod+Shift+81 move container to workspace 9
 
 assign [class="Firefox|TelegramDesktop"] $workspace1
 assign [class="Alacritty"] $workspace2
+# По умолчанию терминал появляется не на полный экран, тут мы это исправляем, причём делаем все терминалы на полный экран только во второй рабочей области
+for_window [workspace=$workspace2]fullscreen toggle
+
 assign [class="Emacs|Gvim|vim|Code"] $workspace3
-assign [class="Nautilus"] $workspace4
+assign [class="Nautilus|Thunar"] $workspace4
 # Тут for_window используется потому что class у ranger - alacritty (терминал, в котором он исполняется)
 # Чтобы перенести Ranger на отдельный воркспейс я просто уточняю, что все окна с заголовком "ranger" переносятся в 4 воркспейс
 for_window [title="ranger"] move container to workspace $workspace4; toggle fullscreen
@@ -175,7 +178,7 @@ assign [class="Alacritty|Firefox|TelegramDesktop|Code|Emacs|Nautilus"] focus
 ##################################
 # Внегласные правила
 # Все приложения запускаются через Win + Shift + Первая буква приложения
-# 1 рабочий стол - telegram и firefox, 2 - редакторы, 3 - терминалы, 4 - файловые менеджеры
+# 1 рабочий стол - telegram и firefox, 2 - терминал, 3 - редакторы, 4 - файловые менеджеры
 
 
 #####
