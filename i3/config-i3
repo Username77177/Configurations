@@ -167,7 +167,9 @@ assign [class="Firefox|TelegramDesktop"] $workspace1
 assign [class="Alacritty"] $workspace2
 assign [class="Emacs|Gvim|vim|Code"] $workspace3
 assign [class="Nautilus"] $workspace4
-
+# Тут for_window используется потому что class у ranger - alacritty (терминал, в котором он исполняется)
+# Чтобы перенести Ranger на отдельный воркспейс я просто уточняю, что все окна с заголовком "ranger" переносятся в 4 воркспейс
+for_window [title="ranger"] move container to workspace $workspace4; toggle fullscreen
 assign [class="Alacritty|Firefox|TelegramDesktop|Code|Emacs|Nautilus"] focus
 
 ##################################
@@ -199,9 +201,12 @@ bindsym Print exec scrot ~/Pictures/"Screenshot `date +%F_%R`".png
 # Сделать скриншот и сразу же вставить его в буфер обмена
 bindsym Ctrl+Print exec scrot -w ~/Pictures/"Screenshot `date +%F_%R`png -e 'xclip -selection clipboard -target image/png -i $f'"
 
+### БЫСТРЫЙ ЗАПУСК ПРОГРАММ
 bindsym $mod+Shift+f exec firefox
 bindsym $mod+Shift+e exec "emacs -fs -fn 'Fira Code'"
-
+bindsym $mod+m exec alacritty -t 'ranger' -e ranger
+bindsym $mod+n exec nautilus
+###
 
 # М + q для того чтобы убить процесс окна
 bindsym $mod+q kill
