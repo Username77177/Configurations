@@ -19,7 +19,7 @@ Section "InputClass"
         MatchDevicePath "/dev/input/event*"
         Option "ClickMethod" "clickfinger"
         Option "NaturalScrolling" "true"
-        #Option "Tapping" "True"
+        Option "Tapping" "True"
         Driver "libinput"
 
 EndSection
