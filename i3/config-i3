@@ -46,6 +46,7 @@ set $workspace2 "2: Terminals"
 set $workspace3 "3: Editors"
 set $workspace4 "4: File Manager"
 set $workspace5 "5: Other Things"
+set $workspaceFD "Near Zero: Float Desktop"
 ###
 
 
@@ -83,6 +84,100 @@ font pango: Fira Code 10
 
 
 ######################################################### Конец раздела фич
+
+
+#__        __              _
+#\ \      / /  ___   _ __ | | __ ___  _ __    __ _   ___   ___  ___
+# \ \ /\ / /  / _ \ | '__|| |/ // __|| '_ \  / _` | / __| / _ \/ __|
+#  \ V  V /  | (_) || |   |   < \__ \| |_) || (_| || (__ |  __/\__ \
+#   \_/\_/    \___/ |_|   |_|\_\|___/| .__/  \__,_| \___| \___||___/
+#                                    |_|
+# _____                         _
+#|_   _|__      __  ___   __ _ | | __ ___
+#  | |  \ \ /\ / / / _ \ / _` || |/ // __|
+#  | |   \ V  V / |  __/| (_| ||   < \__ \
+#  |_|    \_/\_/   \___| \__,_||_|\_\|___/
+#
+# Workspaces Tweaks ( Настройки рабочих пространств )
+
+
+# Переключение между рабочими областями
+bindcode $mod+87 workspace $workspace1
+bindcode $mod+88 workspace $workspace2
+
+# Редакторы никогда не должны плавать
+bindcode $mod+89 workspace $workspace3; floating disable
+
+#Сделали так, чтобы все окна на рабочем столе 4 были отображены как табы
+bindcode $mod+83 workspace $workspace4; layout tabbed
+
+bindcode $mod+84 workspace $workspace5
+bindcode $mod+85 workspace 6
+bindcode $mod+79 workspace 7
+bindcode $mod+80 workspace 8
+bindcode $mod+81 workspace 9
+
+# Воркспейс, где все окна находятся в режиме float (летают, как на обычном десктопе)
+bindcode $mod+91 workspace $workspaceFD; floating enable
+# Перенос окон в этот воркспейс
+bindcode $mod+Shift+91 move container to workspace $workspaceFD
+
+# Переключение между последними рабочими областями
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace previous
+
+# Второй вариант с обычными цифрами, а не через NumLock цифры
+#bindsym mod1+1 workspace $workspace1
+#bindsym mod1+2 workspace $workspace2
+#bindsym mod1+3 workspace $workspace3
+#bindsym mod1+4 workspace $workspace4
+#bindsym mod1+5 workspace $workspace5
+#bindsym mod1+6 workspace 6
+#bindsym mod1+7 workspace 7
+#bindsym mod1+8 workspace 8
+#bindsym mod1+9 workspace 9
+#bindsym mod1+0 workspace 10
+
+# Показать экран без ничего
+bindsym $mod+x workspace Desktop
+
+# M + Shift + цифра
+# Перемещать выделенное окно между областями
+bindcode $mod+Shift+87 move container to workspace $workspace1
+bindcode $mod+Shift+88 move container to workspace $workspace2
+bindcode $mod+Shift+89 move container to workspace $workspace3
+bindcode $mod+Shift+83 move container to workspace $workspace4
+bindcode $mod+Shift+84 move container to workspace $workspace5
+bindcode $mod+Shift+85 move container to workspace 6
+bindcode $mod+Shift+80 move container to workspace 8
+bindcode $mod+Shift+81 move container to workspace 9
+
+
+####################################################### Конец раздела настройки рабочих пространств
+
+
+# ____          _
+#|  _ \  _   _ | |  ___  ___
+#| |_) || | | || | / _ \/ __|
+#|  _ < | |_| || ||  __/\__ \
+#|_| \_\ \__,_||_| \___||___/
+#Rules ( правила )
+
+assign [class="Firefox|TelegramDesktop"] $workspace1
+assign [class="Alacritty"] $workspace2
+assign [class="Emacs|Gvim|vim|Code"] $workspace3
+assign [class="Nautilus"] $workspace4
+
+assign [class="Alacritty|Firefox|TelegramDesktop|Code|Emacs|Nautilus"] focus
+
+##################################
+# Внегласные правила
+# Все приложения запускаются через Win + Shift + Первая буква приложения
+# 1 рабочий стол - telegram и firefox, 2 - редакторы, 3 - терминалы, 4 - файловые менеджеры
+
+
+#####
+
 
 # ____   _             _
 #| __ ) (_) _ __    __| | ___
@@ -122,18 +217,6 @@ bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'Really, exit?' -b 'Yes' 'i3-
 # Клавиша мода + мышка для того чтобы перетаскивать окна в плаваюшем режиме
 floating_modifier $mod
 
-# Перемещение между окнами
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
-
-# Перемещать окна между рабочими областями
-bindsym $mod+Shift+h move left 20px
-bindsym $mod+Shift+j move down 20px
-bindsym $mod+Shift+k move up 20px
-bindsym $mod+Shift+l move right 20px
-
 # M + Alt + v
 # разделить следущее по горизонтали
 bindsym $mod+v split h
@@ -155,56 +238,14 @@ bindsym $mod+e layout toggle split
 # Поменять режим с тиллинга на плавающий и обратно
 bindsym $mod+f floating toggle
 
-# Сменить фокус с тиллингового на плавающее дочернее окно
-# bindsym $mod+Shift focus mode_toggle
+# Сменить фокус с тиллингового на плавающее окно
+bindsym $mod+mod1+f focus mode_toggle
 
 # Фокус на окно-родитель (контейнер)
 bindsym $mod+a focus parent
 
 # Фокус на дочерние окна данного контейнера
 #bindsym $mod+Shift+d focus child
-
-# Переключение между рабочими областями
-bindcode $mod+87 workspace $workspace1
-bindcode $mod+88 workspace $workspace2
-bindcode $mod+89 workspace $workspace3
-bindcode $mod+83 workspace $workspace4; layout tabbed # Сделали так, чтобы все окна на рабочем столе 4 были отображены как табы
-bindcode $mod+84 workspace $workspace5
-bindcode $mod+85 workspace 6
-bindcode $mod+79 workspace 7
-bindcode $mod+80 workspace 8
-bindcode $mod+81 workspace 9
-
-# Переключение между последними рабочими областями
-bindsym $mod+Tab workspace next
-bindsym $mod+Shift+Tab workspace previous
-
-# Второй вариант с обычными цифрами, а не через NumLock цифры
-#bindsym mod1+1 workspace $workspace1
-#bindsym mod1+2 workspace $workspace2
-#bindsym mod1+3 workspace $workspace3
-#bindsym mod1+4 workspace $workspace4
-#bindsym mod1+5 workspace $workspace5
-#bindsym mod1+6 workspace 6
-#bindsym mod1+7 workspace 7
-#bindsym mod1+8 workspace 8
-#bindsym mod1+9 workspace 9
-#bindsym mod1+0 workspace 10
-
-# Показать экран без ничего
-bindsym $mod+x workspace Desktop
-
-# M + Shift + цифра
-# Перемещать выделенное окно между областями
-bindcode mod1+50+87 move container to workspace $workspace1
-bindcode mod1+50+88 move container to workspace $workspace2
-bindcode mod1+50+Shift+89 move container to workspace $workspace3
-bindcode mod1+50+Shift+83 move container to workspace $workspace4
-bindcode mod1+50+Shift+84 move container to workspace $workspace5
-bindcode mod1+50+Shift+85 move container to workspace 6
-bindcode mod1+50+Shift+79 move container to workspace 7
-bindcode mod1+50+Shift+80 move container to workspace 8
-bindcode mod1+50+Shift+81 move container to workspace 9
 
 # M + Shift + C перезагрузить конфигурацию
 bindsym $mod+Shift+c reload
@@ -274,11 +315,25 @@ gaps outer 2 # Отступы от экрана
 # Movement ( передвижение окон и их размерность )
 
 
+# Перемещение между окнами
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# Перемещать окна
+bindsym $mod+Shift+h move left 20px
+bindsym $mod+Shift+j move down 20px
+bindsym $mod+Shift+k move up 20px
+bindsym $mod+Shift+l move right 20px
+
+# Меняем размер окон
 bindsym $mod+Ctrl+Left resize shrink width 20 px or 20 ppt
 bindsym $mod+Ctrl+Down resize grow height 20 px or 20 ppt
 bindsym $mod+Ctrl+Up resize shrink height 20 px or 20 ppt
 bindsym $mod+Ctrl+Right resize grow width 20 px or 20 ppt
 
+# 2-й вариaнт
 bindsym $mod+Ctrl+h resize shrink width 20 px or 20 ppt
 bindsym $mod+Ctrl+j resize grow height 20 px or 20 ppt
 bindsym $mod+Ctrl+k resize shrink height 20 px or 20 ppt
@@ -342,22 +397,3 @@ client.placeholder          #2f343f #2f343f #d8dee8 #2f343f #2f343f
 client.background           #2f343f
 
 ############################################ Конец раздела топбара
-
-# ____          _
-#|  _ \  _   _ | |  ___  ___
-#| |_) || | | || | / _ \/ __|
-#|  _ < | |_| || ||  __/\__ \
-#|_| \_\ \__,_||_| \___||___/
-#Rules ( правила )
-
-assign [class="Firefox|TelegramDesktop"] $workspace1
-assign [class="Alacritty"] $workspace2
-assign [class="Emacs|Gvim|vim|Code"] $workspace3
-assign [class="Nautilus"] $workspace4
-
-assign [class="Alacritty|Firefox|TelegramDesktop|Code|Emacs|Nautilus"] focus
-
-##################################
-# Внегласные правила
-# Все приложения запускаются через Win + Shift + Первая буква приложения
-# 1 рабочий стол - telegram и firefox, 2 - редакторы, 3 - терминалы, 4 - файловые менеджеры

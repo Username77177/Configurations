@@ -41,17 +41,24 @@ xterm*faceSize: 15
 rofi.location:          0
 rofi.color-enabled:     true
 ! Фон и рамка
-rofi.color-window:      #2d3436, #2d3436
-Фон, шрифт, альтернатива фону, hlbg, hlfg
-rofi.color-normal:      #2d3436, #ebf2f5, #2d3436, #0984e3, #fefefe,
-rofi.color-urgent:      #2d3436, #ebf2f5, #2d3436, #0984e3, #fefefe,
-rofi.color-active:      #2d3436, #ebf2f5, #2d3436, #0984e3, #fefefe,
+! Alpha|R|G|B - argb; hex: transparent|R|G|B
+
+rofi.color-window:      #ef2d3436, #d92d3436, #d92d3436
+!Фон, шрифт, альтернатива фону, hlbg, hlfg
+! Первое - просто список меню.
+! Второе - срочное (которое тут не часто)
+! Третье - цвет выбора
+
+!Третий столбец - цвет чётных элементов (как я понял)
+rofi.color-normal:      #00000000, #ebf2f5, #00000000, #d92d3436, #0984e3, #fefefe, #ffffff
+rofi.color-urgent:      #00000000, #ebf2f5, #00000000, #d92d3436, #fefefe,
+rofi.color-active:      #2d3436, #ebf2f5, #d92d3436, #d92d3436, #fefefe
 rofi.separator-style:   dash
 rofi.fullscreen:        false
 rofi.padding:           70
 rofi.hide-scrollbar:    true
 rofi.line-margin:       10
-rofi.fake-transparency: true
+rofi.fake-transparency: false
 rofi.yoffset:           0
 rofi.xoffset:           0
 rofi.opacity:           50
