@@ -80,7 +80,7 @@ mkdir ~/.config/i3
 ln -sfr ~/Configurations/i3/config-i3 ~/.config/i3/config
 echo "Конфигурация топ-бара i3 (i3-statusbar)"
 ln -sfr ~/Configurations/i3/config-i3-statusbar-version2 ~/.config/i3status/config
-
+ln -sfr ~/Configurations/i3/compton.conf ~/.config/
 ln -sfr ~/Configurations/i3/XRESOURCES-for-all ~/.Xresources
 
 
@@ -96,3 +96,9 @@ then
     rm -rf ~/Configurations/fastconfig*
     rm -rf ~/Configurations/readytopush.sh
 fi
+
+
+####Конфигурация тачпада для ноутбука
+# Линкует ваш обычный файл конфигурации тачпада, с дефолтом
+sudo ln -sfr ~/Configurations/i3/40-libinput.conf.mouseconfig /etc/X11/xorg.conf.d/40-libinput.conf
+sudo ln -sfr ~/Configurations/i3/40-libinput.conf.mouseconfig /usr/share/X11/xorg.conf.d/40-libinput.conf
