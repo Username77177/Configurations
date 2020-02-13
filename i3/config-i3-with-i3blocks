@@ -1,0 +1,418 @@
+# _  _____                       __  _
+#(_)|___ /   ___   ___   _ __   / _|(_)  __ _
+#| |  |_ \  / __| / _ \ | '_ \ | |_ | | / _` |
+#|_||____/  \___| \___/ |_| |_||_|  |_| \__, |
+#                                       |___/
+# ___                                                                        _______  _______    _  _______  _______
+#(  _`\                                                                     (_____  )(_____  ) /' )(_____  )(_____  )
+#| (_) ) _   _     _   _   ___    __   _ __   ___     _ _   ___ ___     __       /'/'     /'/'(_, |     /'/'     /'/'
+#|  _ <'( ) ( )   ( ) ( )/',__) /'__`\( '__)/' _ `\ /'_` )/' _ ` _ `\ /'__`\   /'/'     /'/'    | |   /'/'     /'/'
+#| (_) )| (_) |   | (_) |\__, \(  ___/| |   | ( ) |( (_| || ( ) ( ) |(  ___/ /'/'     /'/'      | | /'/'     /'/'
+#(____/'`\__, |   `\___/'(____/`\____)(_)   (_) (_)`\__,_)(_) (_) (_)`\____)(_/      (_/        (_)(_/      (_/
+#       ( )_| |
+#       `\___/'
+
+#######################################################################################################################
+# Краткая справка:
+# bindsym - привязать что-то по названию клавиши;
+# bindcode - привязка к клавишам по их номеру (можно узнать с помощью xev -event keyboard)
+# Команды можно указывать через ";"
+# set - задать переменную
+# $mod - клавиша системы (тут по умолчанию Win)
+# exec - запустить что-то
+# toggle - переключиться между аргументами одной командой (например: scratchpad show toggle будет то показывать, то скрывать scratchpad)
+# bar {} - статус-бар
+# for_window - указать параметры для какого-либо окна
+# assign - применить свойства к определенному классу окон (посмотрите ниже в конфиге есть синтакс), класс узнается с помощью xprop
+# exec_always - то, что запускается повторно даже при перезагрузке i3
+# ключевое слово workspace переключает нас на определённый рабочий стол, однако в командах это можно сделать с помощью i3_msg (подробности в мануале или интернете)
+# Мануал: https://i3wm.org/
+
+
+
+#__     __              _         _      _
+#\ \   / /  __ _  _ __ (_)  __ _ | |__  | |  ___  ___
+# \ \ / /  / _` || '__|| | / _` || '_ \ | | / _ \/ __|
+#  \ V /  | (_| || |   | || (_| || |_) || ||  __/\__ \
+#   \_/    \__,_||_|   |_| \__,_||_.__/ |_| \___||___/
+#Variables
+
+###
+# Переменные, которые потом будут использоваться повсеместно
+#
+#
+set $workspace1 "1: Web And Telegram"
+set $workspace2 "2: Terminals"
+set $workspace3 "3: Editors"
+set $workspace4 "4: File Manager"
+set $workspace5 "5: Other Things"
+set $workspaceFD "Near Zero: Float Desktop"
+###
+
+
+# _____               _
+#|  ___|  ___   __ _ | |_  _   _  _ __   ___  ___
+#| |_    / _ \ / _` || __|| | | || '__| / _ \/ __|
+#|  _|  |  __/| (_| || |_ | |_| || |   |  __/\__ \
+#|_|     \___| \__,_| \__| \__,_||_|    \___||___/
+#Features ( полезные штуки )
+
+# Сетуем клавишу мода на Win
+set $mod Mod4
+
+# Терминал
+set $term --no-startup-id $TERMINAL
+
+# Compton
+exec_always --no-startup-id "killall -q compton; compton --config ~/.config/compton.conf"
+
+# Меняем язык через Mod + Space
+exec --no-startup-id setxkbmap -model pc105 -layout us,ru -option grp:win_space_toggle
+
+##### Автозапуск приложений
+exec alacritty
+exec "emacs26 -fs -fn 'Fira Code'"
+#####
+
+# Обои
+# Первый вариант просто сетует обои, второй же делает обои из гифок
+# exec_always feh --bg-scale ~/.wallpaper.jpg #1
+exec xwinwrap -g 1920x1080 -ov -ni -s -nf -- gifview -w WID ~/4.gif -a #2
+
+# Шрифт
+font pango: Fira Code 10
+
+
+######################################################### Конец раздела фич
+
+
+#__        __              _
+#\ \      / /  ___   _ __ | | __ ___  _ __    __ _   ___   ___  ___
+# \ \ /\ / /  / _ \ | '__|| |/ // __|| '_ \  / _` | / __| / _ \/ __|
+#  \ V  V /  | (_) || |   |   < \__ \| |_) || (_| || (__ |  __/\__ \
+#   \_/\_/    \___/ |_|   |_|\_\|___/| .__/  \__,_| \___| \___||___/
+#                                    |_|
+# _____                         _
+#|_   _|__      __  ___   __ _ | | __ ___
+#  | |  \ \ /\ / / / _ \ / _` || |/ // __|
+#  | |   \ V  V / |  __/| (_| ||   < \__ \
+#  |_|    \_/\_/   \___| \__,_||_|\_\|___/
+#
+# Workspaces Tweaks ( Настройки рабочих пространств )
+
+
+# Переключение между рабочими областями
+bindcode $mod+87 workspace $workspace1
+bindcode $mod+88 workspace $workspace2
+
+# Редакторы никогда не должны плавать
+bindcode $mod+89 workspace $workspace3; floating disable
+
+#Сделали так, чтобы все окна на рабочем столе 4 были отображены как табы
+bindcode $mod+83 workspace $workspace4; layout tabbed
+
+bindcode $mod+84 workspace $workspace5
+bindcode $mod+85 workspace 6
+bindcode $mod+79 workspace 7
+bindcode $mod+80 workspace 8
+bindcode $mod+81 workspace 9
+
+# Воркспейс, где все окна находятся в режиме float (летают, как на обычном десктопе)
+bindcode $mod+91 workspace $workspaceFD; floating enable
+# Перенос окон в этот воркспейс
+bindcode $mod+Shift+91 move container to workspace $workspaceFD
+
+#TODO!
+# Переключение между последними рабочими областями
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+
+# Второй вариант с обычными цифрами, а не через NumLock цифры
+#bindsym mod1+1 workspace $workspace1
+#bindsym mod1+2 workspace $workspace2
+#bindsym mod1+3 workspace $workspace3
+#bindsym mod1+4 workspace $workspace4
+#bindsym mod1+5 workspace $workspace5
+#bindsym mod1+6 workspace 6
+#bindsym mod1+7 workspace 7
+#bindsym mod1+8 workspace 8
+#bindsym mod1+9 workspace 9
+#bindsym mod1+0 workspace 10
+
+# Показать экран без ничего
+bindsym $mod+x workspace Desktop
+
+# M + Shift + цифра
+# Перемещать выделенное окно между областями
+bindcode $mod+Shift+87 move container to workspace $workspace1
+bindcode $mod+Shift+88 move container to workspace $workspace2
+bindcode $mod+Shift+89 move container to workspace $workspace3
+bindcode $mod+Shift+83 move container to workspace $workspace4
+bindcode $mod+Shift+84 move container to workspace $workspace5
+bindcode $mod+Shift+85 move container to workspace 6
+bindcode $mod+Shift+80 move container to workspace 8
+bindcode $mod+Shift+81 move container to workspace 9
+
+# Scratchpad ( летающие float окна поверх других )
+bindcode $mod+105 scratchpad show
+
+####################################################### Конец раздела настройки рабочих пространств
+
+
+# ____          _
+#|  _ \  _   _ | |  ___  ___
+#| |_) || | | || | / _ \/ __|
+#|  _ < | |_| || ||  __/\__ \
+#|_| \_\ \__,_||_| \___||___/
+#Rules ( правила )
+
+assign [class="Firefox|TelegramDesktop"] $workspace1
+assign [class="Alacritty"] $workspace2
+# По умолчанию терминал появляется не на полный экран, тут мы это исправляем, причём делаем все терминалы на полный экран только во второй рабочей области
+for_window [workspace=$workspace2]fullscreen toggle
+
+assign [class="Emacs|Gvim|vim|Code"] $workspace3
+assign [class="Nautilus|Thunar"] $workspace4
+
+# Тут for_window используется потому что class у ranger - alacritty (терминал, в котором он исполняется)
+# Чтобы перенести Ranger на отдельный воркспейс я просто уточняю, что все окна с заголовком "ranger" переносятся в 4 воркспейс
+for_window [title="ranger"] move container to workspace $workspace4
+#for_window [title="ranger"] move scratchpad; floatting enable; fullscreen disable
+assign [class="Alacritty|Firefox|TelegramDesktop|Code|Emacs|Nautilus"] focus
+
+##################################
+# Внегласные правила
+# Все приложения запускаются через Win + Shift + Первая буква приложения
+# 1 рабочий стол - telegram и firefox, 2 - терминал, 3 - редакторы, 4 - файловые менеджеры
+
+
+#####
+
+
+# ____   _             _
+#| __ ) (_) _ __    __| | ___
+#|  _ \ | || '_ \  / _` |/ __|
+#| |_) || || | | || (_| |\__ \
+#|____/ |_||_| |_| \__,_||___/
+#Binds (сочетания клавиш)
+
+
+#                                       #
+# Впредь клавиша Мода буду писать как М #
+#					                    #
+
+# Мод + Enter чтобы запустить терминал
+bindsym $mod+Return exec i3-sensible-terminal
+
+# Сделать скриншот
+bindsym Print exec scrot ~/Pictures/"Screenshot `date +%F_%R`".png
+# Сделать скриншот и сразу же вставить его в буфер обмена
+bindsym Ctrl+Print exec scrot -w ~/Pictures/"Screenshot `date +%F_%R`png -e 'xclip -selection clipboard -target image/png -i $f'"
+
+### БЫСТРЫЙ ЗАПУСК ПРОГРАММ
+bindsym $mod+Shift+f exec firefox
+bindsym $mod+Shift+e exec "emacs -fs -fn 'Fira Code'"
+bindsym $mod+m exec alacritty -t 'ranger' -e ranger
+bindsym $mod+Shift+n exec nautilus
+bindsym $mod+Shift+t exec telegram-desktop
+bindsym $mod+Shift+v exec alacritty -t 'vim' -e vim
+# bindsym $mod+Shift+v exec alacritty -t 'vim' -e nvim
+###
+
+# М + q для того чтобы убить процесс окна
+bindsym $mod+q kill
+
+# Alt + Tab для того, чтобы выбрать приложение
+# Тут можно заменить приложение для выбора приложений
+##bindsym $mod+d exec dmenu_run##
+#bindsym mod1+Tab exec "rofi -show combi run,window -columns 1 -lines 20 -padding 18 -width 80 -show-icons -icon-theme Mojave-CT-Night-Mode"
+bindsym $mod+d exec "rofi -show drun -show-icons -drun-icon-theme Mojave-CT-Night-Mode"
+# M + Shift + Q для выхода
+bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'Really, exit?' -b 'Yes' 'i3-msg exit'"
+
+# Клавиша мода + мышка для того чтобы перетаскивать окна в плаваюшем режиме
+floating_modifier $mod
+
+# M + Alt + v
+# разделить следущее по горизонтали
+bindsym $mod+v split h
+
+# M + v
+# разделить следущее окно по вертикали
+bindsym $mod+c split v
+
+# M + Numpad0
+# открыть окно на полный экран
+bindcode $mod+90 fullscreen toggle
+# В основном, везде и так есть FullScreen на F11
+
+# Поменять вид контейнера
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# Поменять режим с тиллинга на плавающий и обратно
+bindsym $mod+f floating toggle
+
+# Сменить фокус с тиллингового на плавающее окно
+bindsym $mod+mod1+f focus mode_toggle
+
+# Фокус на окно-родитель (контейнер)
+bindsym $mod+a focus parent
+
+# Фокус на дочерние окна данного контейнера
+#bindsym $mod+Shift+d focus child
+
+# M + Shift + C перезагрузить конфигурацию
+bindsym $mod+Shift+c reload
+
+# M + r
+# Перезагрузить i3
+bindsym $mod+r restart
+
+# M + e
+# Выйти из профиля ( Logout )
+# bindsym $mod+e exec logout
+
+### Звук
+# Thanks, guys
+# https://unix.stackexchange.com/questions/21089/how-to-use-command-line-to-change-volume
+# https://www.reddit.com/r/i3wm/comments/3a6nh3/help_how_to_use_function_keys_in_i3_config/
+
+bindsym XF86AudioMute exec amixer -D pulse sset Master toggle
+bindsym XF86AudioRaiseVolume exec amixer sset Master 5%+
+bindsym XF86AudioLowerVolume exec amixer sset Master 5%-
+
+### Яркость экрана
+bindsym XF86MonBrightnessUp exec xbacklight -inc 5 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightness
+
+### Настройка переключения музыки
+bindsym XF86AudioNext exec mpc next
+bindsym XF86AudioPrev exec mpc prev
+bindsym XF86AudioPlay exec mpc toggle
+bindsym XF86AudioStop exec mpc stop
+
+############################################################### Конец раздела биндов
+
+# ___  _____          ____
+#|_ _||___ /         / ___|  __ _  _ __   ___
+# | |   |_ \  _____ | |  _  / _` || '_ \ / __|
+# | |  ___) ||_____|| |_| || (_| || |_) |\__ \
+#|___||____/         \____| \__,_|| .__/ |___/
+#                                 |_|
+#i3-gaps ( дополнение для того, чтобы между окнами было пространство )
+
+
+# Margins
+for_window [class="^.*"] border pixel 2 # Рамка для всех окон в 2px
+# smart_gaps on
+gaps inner 10 # Отступы между окнами
+gaps outer 2 # Отступы от экрана
+
+#Keybinds
+# Inner gaps
+bindcode $mod+mod1+21 gaps inner current plus 5
+bindcode $mod+mod1+20 gaps inner current minus 5
+bindcode $mod+mod1+19 gaps inner current set 0
+# Outer gaps
+bindcode $mod+Ctrl+21 gaps outer current plus 5
+bindcode $mod+Ctrl+20 gaps outer current minus 5
+bindcode $mod+Ctrl+19 gaps outer current set 0
+
+# Standard Gaps [ Win+Ctrl+Alt+0 ]
+bindcode $mod+Ctrl+mod1+19 gaps inner current set 10; gaps outer current set 2
+
+
+################################################################# i3-gaps end
+
+# __  __                                              _
+#|  \/  |  ___  __   __  ___  _ __ ___    ___  _ __  | |_
+#| |\/| | / _ \ \ \ / / / _ \| '_ ` _ \  / _ \| '_ \ | __|
+#| |  | || (_) | \ V / |  __/| | | | | ||  __/| | | || |_
+#|_|  |_| \___/   \_/   \___||_| |_| |_| \___||_| |_| \__|
+# Movement ( передвижение окон и их размерность )
+
+
+# Перемещение между окнами
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# Перемещать окна
+bindsym $mod+Shift+h move left 20px
+bindsym $mod+Shift+j move down 20px
+bindsym $mod+Shift+k move up 20px
+bindsym $mod+Shift+l move right 20px
+
+# Меняем размер окон
+bindsym $mod+Ctrl+Left resize shrink width 20 px or 20 ppt
+bindsym $mod+Ctrl+Down resize grow height 20 px or 20 ppt
+bindsym $mod+Ctrl+Up resize shrink height 20 px or 20 ppt
+bindsym $mod+Ctrl+Right resize grow width 20 px or 20 ppt
+
+# 2-й вариaнт
+bindsym $mod+Ctrl+h resize shrink width 20 px or 20 ppt
+bindsym $mod+Ctrl+j resize grow height 20 px or 20 ppt
+bindsym $mod+Ctrl+k resize shrink height 20 px or 20 ppt
+bindsym $mod+Ctrl+l resize grow width 20 px or 20 ppt
+
+
+############################################################################# Конец раздела передвижения и размещения
+
+# ____
+#| __ )   __ _  _ __
+#|  _ \  / _` || '__|
+#| |_) || (_| || |
+#|____/  \__,_||_|
+# Настройка топ-бара ( i3-status )
+
+
+#bar {
+#position top
+#status_command i3status
+#font pango:Noto Sans 12
+###}
+
+
+# Color Palette https://flatuicolors.com/palette/us
+bar {
+i3bar_command i3bar --transparency
+status_command i3status
+
+position top
+
+separator_symbol "|"
+
+colors {
+    background #2d3436 # Фон всей панели
+    separator #636e72 # Фон разделителей
+    statusline #000000 # Цвет текста дополнительной панели
+
+    # Цвет: Граница, фон, текст
+    #Неактивные бары
+    #Бар на котором вы сейас находитесь
+    #?
+    #Бар на котором новое приложение
+    inactive_workspace      #2f343f #403952 #dfe6e9
+    focused_workspace       #6c5cc9 #6c5ce7 #e9f1f5
+    active_workspace        #000000 #000000 #ffffff
+    urgent_workspacei       #ff7979 #403952 #ffffff
+}
+# У самого последнего разметка: Фон, шрифт, граница
+}
+
+# Темы для границ окон
+# Thanks, addy-dclxvi
+# https://github.com/addy-dclxvi/i3-starterpack/blob/master/.config/i3/config
+
+# colour of border, background, text, indicator, and child_border
+client.focused              #bf616a #2f343f #d8dee8 #bf616a #d8dee8
+client.focused_inactive     #2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.unfocused            #2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.urgent               #2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.placeholder          #2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.background           #2f343f
+
+############################################ Конец раздела топбара
