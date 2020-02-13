@@ -122,9 +122,10 @@ bindcode $mod+91 workspace $workspaceFD; floating enable
 # Перенос окон в этот воркспейс
 bindcode $mod+Shift+91 move container to workspace $workspaceFD
 
+#TODO!
 # Переключение между последними рабочими областями
 bindsym $mod+Tab workspace next
-bindsym $mod+Shift+Tab workspace previous
+bindsym $mod+Shift+Tab workspace prev
 
 # Второй вариант с обычными цифрами, а не через NumLock цифры
 #bindsym mod1+1 workspace $workspace1
@@ -152,6 +153,8 @@ bindcode $mod+Shift+85 move container to workspace 6
 bindcode $mod+Shift+80 move container to workspace 8
 bindcode $mod+Shift+81 move container to workspace 9
 
+# Scratchpad ( летающие float окна поверх других )
+bindcode $mod+105 scratchpad show
 
 ####################################################### Конец раздела настройки рабочих пространств
 
@@ -170,9 +173,11 @@ for_window [workspace=$workspace2]fullscreen toggle
 
 assign [class="Emacs|Gvim|vim|Code"] $workspace3
 assign [class="Nautilus|Thunar"] $workspace4
+
 # Тут for_window используется потому что class у ranger - alacritty (терминал, в котором он исполняется)
 # Чтобы перенести Ranger на отдельный воркспейс я просто уточняю, что все окна с заголовком "ranger" переносятся в 4 воркспейс
-for_window [title="ranger"] move container to workspace $workspace4; toggle fullscreen
+for_window [title="ranger"] move container to workspace $workspace4
+#for_window [title="ranger"] move scratchpad; floatting enable; fullscreen disable
 assign [class="Alacritty|Firefox|TelegramDesktop|Code|Emacs|Nautilus"] focus
 
 ##################################
@@ -208,7 +213,10 @@ bindsym Ctrl+Print exec scrot -w ~/Pictures/"Screenshot `date +%F_%R`png -e 'xcl
 bindsym $mod+Shift+f exec firefox
 bindsym $mod+Shift+e exec "emacs -fs -fn 'Fira Code'"
 bindsym $mod+m exec alacritty -t 'ranger' -e ranger
-bindsym $mod+n exec nautilus
+bindsym $mod+Shift+n exec nautilus
+bindsym $mod+Shift+t exec telegram-desktop
+bindsym $mod+Shift+v exec alacritty -t 'vim' -e vim
+# bindsym $mod+Shift+v exec alacritty -t 'vim' -e nvim
 ###
 
 # М + q для того чтобы убить процесс окна
@@ -298,20 +306,23 @@ bindsym XF86AudioStop exec mpc stop
 
 # Margins
 for_window [class="^.*"] border pixel 2 # Рамка для всех окон в 2px
-smart_gaps on
+# smart_gaps on
 gaps inner 10 # Отступы между окнами
 gaps outer 2 # Отступы от экрана
 
-#TODO!
 #Keybinds
 # Inner gaps
-#bindsym $mod+mod1+= gaps inner current plus 5
-#bindsym $mod+mod1+- gaps inner current minus 5
-#bindsym $mod+mod1+0 gaps inner current set 0
+bindcode $mod+mod1+21 gaps inner current plus 5
+bindcode $mod+mod1+20 gaps inner current minus 5
+bindcode $mod+mod1+19 gaps inner current set 0
 # Outer gaps
-#bindsym $mod+Ctrl+= gaps outer current plus 5
-#bindsym $mod+Ctrl+- gaps outer current minus 5
-#bindsym $mod+Ctrl+0 gaps outer current set 0
+bindcode $mod+Ctrl+21 gaps outer current plus 5
+bindcode $mod+Ctrl+20 gaps outer current minus 5
+bindcode $mod+Ctrl+19 gaps outer current set 0
+
+# Standard Gaps [ Win+Ctrl+Alt+0 ]
+bindcode $mod+Ctrl+mod1+19 gaps inner current set 10; gaps outer current set 2
+
 
 ################################################################# i3-gaps end
 
