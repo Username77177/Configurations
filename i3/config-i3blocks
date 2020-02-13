@@ -1,2 +1,8 @@
 separator_block_width=15
 markup=pango
+# Переменной $BLOCK_NAME присваивается имя блока, в котором она выполняется
+command=~/Configurations/i3/i3blocks-scripts/$BLOCK_NAME
+
+[time]
+command=date '+%Y-%m-%d %H:%M:%S'
+interval=6

@@ -1,0 +1,2 @@
+#!/bin/bash
+ln -sfr ~/Configurations/i3/config-i3-with-i3blocks ~/.config/i3/config

@@ -9,4 +9,4 @@
 * dunst -*конфигурации для dunst (отвечает за уведомления)*
 * config-i3-statusbar - *конфигурация i3status*
 * config-i3-statusbar-version2 - *конфигурация i3status с сплошными цветами (чуть более красивая)*
-
+* i3blocks-scripts - скрипты для i3blocks
