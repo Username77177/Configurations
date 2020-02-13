@@ -16,6 +16,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 # Сделать скриншот
 bindsym Print exec scrot ~/Pictures/"Screenshot `date +%F_%R`".png
 # Сделать скриншот и сразу же вставить его в буфер обмена
+# TODO
 bindsym Ctrl+Print exec scrot -w ~/Pictures/"Screenshot `date +%F_%R`png -e 'xclip -selection clipboard -target image/png -i $f'"
 
 ### БЫСТРЫЙ ЗАПУСК ПРОГРАММ
@@ -83,6 +84,7 @@ bindsym XF86AudioRaiseVolume exec amixer sset Master 5%+
 bindsym XF86AudioLowerVolume exec amixer sset Master 5%-
 
 ### Яркость экрана
+# TODO
 bindsym XF86MonBrightnessUp exec xbacklight -inc 5 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightness
 
