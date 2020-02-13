@@ -1,0 +1,65 @@
+!!!!!!!!!!!!!!!!!!!!!!!XTERM!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! Ctrl + / Ctrl - для того, чтобы изменить размер шрифта
+! Скрипт от https://askubuntu.com/questions/161652/how-to-change-the-default-font-size-of-xterm 
+XTerm.vt100.translations: #override \n\
+  Ctrl <Key> minus: smaller-vt-font() \n\
+  Ctrl <Key> plus: larger-vt-font()
+! Ctrl + C и Ctrl + V
+xterm*translations: #override \
+    Ctrl Shift <KeyPress> C: copy-selection(CLIPBOARD) \n\
+    Ctrl Shift <KeyPress> V: insert-selection(CLIPBOARD)
+! При выделении текста мышью, он переносится в буфер обмена
+XTerm*selectToClipboard: true
+
+! Шрифт
+xterm*faceName: Fira Code
+xterm*faceSize: 15
+
+! Dracula Xresources palette https://github.com/dracula/xresources
+*.foreground: #F8F8F2
+*.background: #282A36
+*.color0:     #000000
+*.color8:     #4D4D4D
+*.color1:     #FF5555
+*.color9:     #FF6E67
+*.color2:     #50FA7B
+*.color10:    #5AF78E
+*.color3:     #F1FA8C
+*.color11:    #F4F99D
+*.color4:     #BD93F9
+*.color12:    #CAA9FA
+*.color5:     #FF79C6
+*.color13:    #FF92D0
+*.color6:     #8BE9FD
+*.color14:    #9AEDFE
+*.color7:     #BFBFBF
+*.color15:    #E6E6E6
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Rofi!!!!!!!!!!!!!!!!!!!!!!!
+
+rofi.location:          0
+rofi.color-enabled:     true
+! Фон и рамка
+! Alpha|R|G|B - argb; hex: transparent|R|G|B
+
+rofi.color-window:      #ef2d3436, #d92d3436, #d92d3436
+!Фон, шрифт, альтернатива фону, hlbg, hlfg
+! Первое - просто список меню.
+! Второе - срочное (которое тут не часто)
+! Третье - цвет выбора
+
+!Третий столбец - цвет чётных элементов (как я понял)
+rofi.color-normal:      #00000000, #ebf2f5, #00000000, #d92d3436, #0984e3, #fefefe, #ffffff
+rofi.color-urgent:      #00000000, #ebf2f5, #00000000, #d92d3436, #fefefe,
+rofi.color-active:      #2d3436, #ebf2f5, #d92d3436, #d92d3436, #fefefe
+rofi.separator-style:   dash
+rofi.fullscreen:        false
+rofi.padding:           70
+rofi.hide-scrollbar:    true
+rofi.line-margin:       10
+rofi.fake-transparency: false
+rofi.yoffset:           0
+rofi.xoffset:           0
+rofi.opacity:           50
+rofi.font:              Fira Code Regular 15

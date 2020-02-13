@@ -38,7 +38,7 @@ sudo make install
 # xwinwrap - ПО, которое позволяет ставить gif файлы на рабочий стол
 sudo apt-get install xorg-dev build-essential libx11-dev x11proto-xext-dev libxrender-dev libxext-dev gifsicle
 git clone https://github.com/ujjwal96/xwinwrap.git ~/gitinstalled/xwinwrap
-cd ../xwinwrap
+cd ~/gitinstalled/xwinwrap
 make
 sudo make install
 make clean

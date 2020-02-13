@@ -1,0 +1,63 @@
+# i3status configuration file.
+# see "man i3status" for documentation.
+
+# It is important that this file is edited as UTF-8.
+# The following line should contain a sharp s:
+# ß
+# If the above line is not correctly displayed, fix your editor first!
+general {
+        output_format = "i3bar"
+        colors = false
+        markup = pango
+        interval = 1
+}
+
+order += "cpu_temperature 0"
+order += "cpu_usage"
+order += "disk /"
+order += "wireless _first_"
+order += "volume master"
+order += "battery 1"
+order += "tztime local"
+cpu_temperature 0 {
+        format = "<span background='#d63031' color='#ffffff'> 💻CPU: %degrees°C </span>"
+        path = "/sys/class/thermal/thermal_zone0/temp"
+}
+
+disk "/" {
+        format = "<span background='#81ecec' color='#000000'> 💿 Space: %free Free </span>"
+}
+
+wireless _first_ {
+	format_up = "<span background='#bacc78'>    %essid |%quality </span>"
+	format_down = " <span background='#fab1a0'>    </span> "
+}
+
+volume master {
+        format = "<span background='#74b9ff' color='#ffffff'> 🔊 %volume </span>"
+        format_muted = "<span background='#ff7675' color='#ffffff'> 🔈 Muted </span>"
+        device = "default"
+        mixer = "Master"
+        mixer_idx = 0
+}
+
+tztime local {
+		format = "<span background='#a29bfe' color='#ffffff'> ⏱ %time </span>"
+		format_time = "%a %-d %b %H:%M"
+}
+
+battery 1 {
+	last_full_capacity = true
+        format = "<span background='#30336b' color='#ffffff'> %status %percentage </span>"
+        format_down = "❌ No Battery"
+        status_chr = "⚡ Charging"
+        status_bat = "🔋 Battery"
+        status_unk = "❓ Unknown"
+        status_full = "👌 Charged"
+        path = "/sys/class/power_supply/BAT0/uevent"
+        low_threshold = 10
+}
+
+cpu_usage {
+	format = "<span background='#f0932b' color='#ffffff'> 🍑 CPU use: %usage </span>"
+}

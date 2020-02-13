@@ -1,0 +1,13 @@
+#!/bin/bash
+DATE=$(date +"%d %b, %R:%S")
+echo $DATE
+# Что произойдёт, если кликнуть на блок (левый клик; колесо; правый клик)
+case $BLOCK_BUTTON in
+1) date ;; # left click = previous so
+esac
+
+#case $BLOCK_BUTTON in
+#1) ;; #ЛЕВЫЙ
+#2) ;; #СРЕДНИЙ
+#3) ;; #ПРАВЫЙ
+#esac

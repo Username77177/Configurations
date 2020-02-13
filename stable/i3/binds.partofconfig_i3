@@ -1,0 +1,95 @@
+# ____   _             _
+#| __ ) (_) _ __    __| | ___
+#|  _ \ | || '_ \  / _` |/ __|
+#| |_) || || | | || (_| |\__ \
+#|____/ |_||_| |_| \__,_||___/
+#Binds (сочетания клавиш)
+
+
+#                                       #
+# Впредь клавиша Мода буду писать как М #
+#					                    #
+
+# Мод + Enter чтобы запустить терминал
+bindsym $mod+Return exec i3-sensible-terminal
+
+# Сделать скриншот
+bindsym Print exec scrot ~/Pictures/"Screenshot `date +%F_%R`".png
+# Сделать скриншот и сразу же вставить его в буфер обмена
+bindsym Ctrl+Print exec scrot -w ~/Pictures/"Screenshot `date +%F_%R`png -e 'xclip -selection clipboard -target image/png -i $f'"
+
+### БЫСТРЫЙ ЗАПУСК ПРОГРАММ
+bindsym $mod+Shift+f exec firefox
+bindsym $mod+Shift+e exec "emacs -fs -fn 'Fira Code'"
+bindsym $mod+m exec alacritty -t 'ranger' -e ranger
+bindsym $mod+Shift+n exec nautilus
+bindsym $mod+Shift+t exec telegram-desktop
+bindsym $mod+Shift+v exec alacritty -t 'vim' -e vim
+# bindsym $mod+Shift+v exec alacritty -t 'vim' -e nvim
+###
+
+# М + q для того чтобы убить процесс окна
+bindsym $mod+q kill
+
+# Запуск Rofi (приложение для выбора приложений)
+bindsym $mod+d exec "rofi -show drun -show-icons -drun-icon-theme Mojave-CT-Night-Mode"
+
+# M + Shift + Q для выхода
+bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'Really, exit?' -b 'Yes' 'i3-msg exit'"
+
+# Клавиша мода + мышка для того чтобы перетаскивать окна в плаваюшем режиме
+floating_modifier $mod
+
+# M + Alt + v
+# разделить следущее по горизонтали
+bindsym $mod+v split h
+
+# M + v
+# разделить следущее окно по вертикали
+bindsym $mod+c split v
+
+# M + Numpad0
+# открыть окно на полный экран
+bindcode $mod+90 fullscreen toggle
+
+# Поменять вид контейнера
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# Поменять режим с тиллинга на плавающий и обратно
+bindsym $mod+f floating toggle
+
+# Сменить фокус с тиллингового на плавающее окно
+bindsym $mod+mod1+f focus mode_toggle
+
+# Фокус на окно-родитель (контейнер)
+bindsym $mod+a focus parent
+
+# M + Shift + C перезагрузить конфигурацию
+bindsym $mod+Shift+c reload
+
+# M + r
+# Перезагрузить i3
+bindsym $mod+r restart
+
+### Звук
+# Thanks, guys
+# https://unix.stackexchange.com/questions/21089/how-to-use-command-line-to-change-volume
+# https://www.reddit.com/r/i3wm/comments/3a6nh3/help_how_to_use_function_keys_in_i3_config/
+
+bindsym XF86AudioMute exec amixer -D pulse sset Master toggle
+bindsym XF86AudioRaiseVolume exec amixer sset Master 5%+
+bindsym XF86AudioLowerVolume exec amixer sset Master 5%-
+
+### Яркость экрана
+bindsym XF86MonBrightnessUp exec xbacklight -inc 5 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightness
+
+### Настройка переключения музыки
+bindsym XF86AudioNext exec mpc next
+bindsym XF86AudioPrev exec mpc prev
+bindsym XF86AudioPlay exec mpc toggle
+bindsym XF86AudioStop exec mpc stop
+
+############################################################### Конец раздела биндов
