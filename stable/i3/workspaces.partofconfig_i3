@@ -1,0 +1,59 @@
+#__        __              _
+#\ \      / /  ___   _ __ | | __ ___  _ __    __ _   ___   ___  ___
+# \ \ /\ / /  / _ \ | '__|| |/ // __|| '_ \  / _` | / __| / _ \/ __|
+#  \ V  V /  | (_) || |   |   < \__ \| |_) || (_| || (__ |  __/\__ \
+#   \_/\_/    \___/ |_|   |_|\_\|___/| .__/  \__,_| \___| \___||___/
+#                                    |_|
+# _____                         _
+#|_   _|__      __  ___   __ _ | | __ ___
+#  | |  \ \ /\ / / / _ \ / _` || |/ // __|
+#  | |   \ V  V / |  __/| (_| ||   < \__ \
+#  |_|    \_/\_/   \___| \__,_||_|\_\|___/
+#
+# Workspaces Tweaks ( Настройки рабочих пространств )
+
+
+# Переключение между рабочими областями
+bindcode $mod+87 workspace $workspace1
+bindcode $mod+88 workspace $workspace2
+
+# Редакторы никогда не должны плавать
+bindcode $mod+89 workspace $workspace3; floating disable
+
+#Сделали так, чтобы все окна на рабочем столе 4 были отображены как табы
+bindcode $mod+83 workspace $workspace4; layout tabbed
+
+bindcode $mod+84 workspace $workspace5
+bindcode $mod+85 workspace 6
+bindcode $mod+79 workspace 7
+bindcode $mod+80 workspace 8
+bindcode $mod+81 workspace 9
+
+# Воркспейс, где все окна находятся в режиме float (летают, как на обычном десктопе)
+bindcode $mod+91 workspace $workspaceFD; floating enable
+
+# Перенос окон в этот воркспейс
+bindcode $mod+Shift+91 move container to workspace $workspaceFD
+
+# Переключение между последними рабочими областями
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+
+# Показать экран без ничего
+bindsym $mod+x workspace Desktop
+
+# M + Shift + цифра
+# Перемещать выделенное окно между областями
+bindcode $mod+Shift+87 move container to workspace $workspace1
+bindcode $mod+Shift+88 move container to workspace $workspace2
+bindcode $mod+Shift+89 move container to workspace $workspace3
+bindcode $mod+Shift+83 move container to workspace $workspace4
+bindcode $mod+Shift+84 move container to workspace $workspace5
+bindcode $mod+Shift+85 move container to workspace 6
+bindcode $mod+Shift+80 move container to workspace 8
+bindcode $mod+Shift+81 move container to workspace 9
+
+# Scratchpad ( летающие float окна поверх других )
+bindcode $mod+105 scratchpad show
+
+####################################################### Конец раздела настройки рабочих пространств

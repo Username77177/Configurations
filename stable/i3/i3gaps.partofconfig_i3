@@ -1,0 +1,29 @@
+# ___  _____          ____
+#|_ _||___ /         / ___|  __ _  _ __   ___
+# | |   |_ \  _____ | |  _  / _` || '_ \ / __|
+# | |  ___) ||_____|| |_| || (_| || |_) |\__ \
+#|___||____/         \____| \__,_|| .__/ |___/
+#                                 |_|
+#i3-gaps ( дополнение для того, чтобы между окнами было пространство )
+
+
+# Margins
+for_window [class="^.*"] border pixel 2 # Рамка для всех окон в 2px
+# smart_gaps on
+gaps inner 10 # Отступы между окнами
+gaps outer 2 # Отступы от экрана
+#Keybinds
+# Inner gaps
+bindcode $mod+mod1+21 gaps inner current plus 5
+bindcode $mod+mod1+20 gaps inner current minus 5
+bindcode $mod+mod1+19 gaps inner current set 0
+# Outer gaps
+bindcode $mod+Ctrl+21 gaps outer current plus 5
+bindcode $mod+Ctrl+20 gaps outer current minus 5
+bindcode $mod+Ctrl+19 gaps outer current set 0
+
+# Standard Gaps [ Win+Ctrl+Alt+0 ]
+bindcode $mod+Ctrl+mod1+19 gaps inner current set 10; gaps outer current set 2
+
+
+################################################################# i3-gaps end

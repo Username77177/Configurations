@@ -377,11 +377,27 @@ bindsym $mod+Ctrl+l resize grow width 20 px or 20 ppt
 
 # Color Palette https://flatuicolors.com/palette/us
 bar {
-	font pango:mono 10
+	font pango: Fira Code 10
 	status_command i3blocks
 	position top
 	mode dock
 	modifier None
+    separator_symbol "|"
+colors {
+    background #2d3436 # Фон всей панели
+    separator #636e72 # Фон разделителей
+    statusline #ffffff # Цвет текста дополнительной панели
+
+    # Цвет: Граница, фон, текст
+    #Неактивные бары
+    #Бар на котором вы сейчас находитесь
+    #?
+    #Бар на котором новое приложение
+    inactive_workspace      #2f343f #403952 #dfe6e9
+    focused_workspace       #6c5cc9 #6c5ce7 #e9f1f5
+    active_workspace        #000000 #000000 #ffffff
+    urgent_workspacei       #ff7979 #403952 #ffffff
+    }
 }
 
 # Темы для границ окон

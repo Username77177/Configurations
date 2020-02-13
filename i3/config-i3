@@ -77,7 +77,7 @@ exec "emacs26 -fs -fn 'Fira Code'"
 # Обои
 # Первый вариант просто сетует обои, второй же делает обои из гифок
 # exec_always feh --bg-scale ~/.wallpaper.jpg #1
-exec xwinwrap -g 1920x1080 -ov -ni -s -nf -- gifview -w WID ~/4.gif -a #2
+exec xwinwrap -g 1920x1080 -ov -ni -s -nf -- gifview -w WID ~/wallpaper.gif -a #2
 
 # Шрифт
 font pango: Fira Code 10

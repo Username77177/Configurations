@@ -58,7 +58,7 @@ sudo apt install i3status i3blocks
 cd ~/Configurations/i3/
 mkdir ~/.config/i3status
 mkdir ~/.config/i3blocks
-ln -sfr ~/Configurations/i3/config-i3-i3blocks ~/.config/i3blocks/config
+ln -sfr ~/Configurations/i3/config-i3blocks ~/.config/i3blocks/config
 ln -sfr ~/Configurations/i3/config-i3-statusbar ~/.config/i3status/config
 
 

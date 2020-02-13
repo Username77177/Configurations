@@ -1,0 +1,55 @@
+# ____
+#| __ )   __ _  _ __
+#|  _ \  / _` || '__|
+#| |_) || (_| || |
+#|____/  \__,_||_|
+# Настройка топ-бара ( i3-status )
+
+
+#bar {
+#position top
+#status_command i3status
+#font pango:Noto Sans 12
+###}
+
+
+# Color Palette https://flatuicolors.com/palette/us
+bar {
+i3bar_command i3bar --transparency
+status_command i3status
+
+position top
+
+separator_symbol "|"
+
+colors {
+    background #2d3436 # Фон всей панели
+    separator #636e72 # Фон разделителей
+    statusline #000000 # Цвет текста дополнительной панели
+
+    # Цвет: Граница, фон, текст
+    #Неактивные бары
+    #Бар на котором вы сейас находитесь
+    #?
+    #Бар на котором новое приложение
+    inactive_workspace      #2f343f #403952 #dfe6e9
+    focused_workspace       #6c5cc9 #6c5ce7 #e9f1f5
+    active_workspace        #000000 #000000 #ffffff
+    urgent_workspacei       #ff7979 #403952 #ffffff
+}
+# У самого последнего разметка: Фон, шрифт, граница
+}
+
+# Темы для границ окон
+# Thanks, addy-dclxvi
+# https://github.com/addy-dclxvi/i3-starterpack/blob/master/.config/i3/config
+
+# colour of border, background, text, indicator, and child_border
+client.focused              #bf616a #2f343f #d8dee8 #bf616a #d8dee8
+client.focused_inactive     #2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.unfocused            #2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.urgent               #2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.placeholder          #2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.background           #2f343f
+
+############################################ Конец раздела топбара
