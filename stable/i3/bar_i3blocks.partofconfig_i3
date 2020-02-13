@@ -1,0 +1,30 @@
+# ____
+#| __ )   __ _  _ __
+#|  _ \  / _` || '__|
+#| |_) || (_| || |
+#|____/  \__,_||_|
+# Настройка топ-бара ( i3-status )
+
+
+# Color Palette https://flatuicolors.com/palette/us
+bar {
+	font pango:mono 10
+	status_command i3blocks -c ~/Configurations/stable/GUI_configurations/i3blocks.conf
+	position top
+	mode dock
+	modifier None
+}
+
+# Темы для границ окон
+# Thanks, addy-dclxvi
+# https://github.com/addy-dclxvi/i3-starterpack/blob/master/.config/i3/config
+
+# colour of border, background, text, indicator, and child_border
+client.focused              #bf616a #2f343f #d8dee8 #bf616a #d8dee8
+client.focused_inactive     #2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.unfocused            #2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.urgent               #2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.placeholder          #2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.background           #2f343f
+
+############################################ Конец раздела топбара

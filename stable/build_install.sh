@@ -46,11 +46,11 @@ echo "1. i3status (Default)"
 echo "2. i3-blocks"
 read status
 
-if [[ $status = "2" ]]
+if [[ $status = "1" ]]
 then
-    cat ~/Configurations/stable/i3/bar_i3blocks.partofconfig_i3 >> $CONFIG_NAME && echo -e "${G}Succesfull!" || echo -e "${R}Fail!"
-else
     cat ~/Configurations/stable/i3/bar_i3status.partofconfig_i3 >> $CONFIG_NAME && echo -e "${G}Succesfull!" || echo -e "${R}Fail!"
+else
+    cat ~/Configurations/stable/i3/bar_i3blocks.partofconfig_i3 >> $CONFIG_NAME && echo -e "${G}Succesfull!" || echo -e "${R}Fail!"
 fi
 
 echo -e "${N}Writing Movement module into $CONFIG_NAME"
@@ -105,9 +105,6 @@ if [[ $status = "1" ]]
 then
     mkdir ~/.config/i3status
     ln -sfr ~/Configurations/stable/GUI_configurations/i3status ~/.config/i3status/config
-else
-    mkdir ~/.config/i3blocks
-    ln -sfr ~/Configurations/stable/GUI_configurations/i3blocks ~/.config/i3blocks/config
 fi
 # I3 configuration
 mkdir ~/.config/i3
