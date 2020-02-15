@@ -3,31 +3,31 @@
 #|  _ \  / _` || '__|
 #| |_) || (_| || |
 #|____/  \__,_||_|
-# Настройка топ-бара ( i3blocks )
+# Настройка топ-бара ( polybar ) 
 
-
+exec_always --no-startup-id ~/Configurations/stable/GUI_configurations/polybar &
 # Color Palette https://flatuicolors.com/palette/us
 bar {
-	font pango:mono 10
-	status_command i3blocks -c ~/Configurations/stable/GUI_configurations/i3blocks.conf
-	position top
-	mode dock
-	modifier None
-    colors {
-           background #2d3436 # Фон всей панели
-           separator #636e72 # Фон разделителей
-           statusline #000000 # Цвет текста дополнительной панели
+i3bar_command $HOME/.config/polybar/launch.sh
+position top
+separator_symbol "|"
+
+colors {
+    background #2d3436 # Фон всей панели
+    separator #636e72 # Фон разделителей
+    statusline #000000 # Цвет текста дополнительной панели
 
     # Цвет: Граница, фон, текст
     #Неактивные бары
     #Бар на котором вы сейас находитесь
     #?
     #Бар на котором новое приложение
-         inactive_workspace      #2f343f #403952 #dfe6e9
-         focused_workspace       #6c5cc9 #6c5ce7 #e9f1f5
-         active_workspace        #000000 #000000 #ffffff
-         urgent_workspacei       #ff7979 #403952 #ffffff
-         }
+    inactive_workspace      #2f343f #403952 #dfe6e9
+    focused_workspace       #6c5cc9 #6c5ce7 #e9f1f5
+    active_workspace        #000000 #000000 #ffffff
+    urgent_workspacei       #ff7979 #403952 #ffffff
+}
+# У самого последнего разметка: Фон, шрифт, граница
 }
 
 # Темы для границ окон

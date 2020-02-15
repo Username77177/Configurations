@@ -1,0 +1,29 @@
+#!/bin/bash
+
+if [[ $(cat /sys/class/power_supply/BAT0/status) = "Full" ]]
+then
+    B=$(acpi | awk  '{print $3" "$4}')
+    echo ⚡$B
+elif [[ $(cat /sys/class/power_supply/BAT0/status) = "Discharging" ]]
+then
+    B=$(acpi | awk '{print $3" "$4}' | sed 's/.$//g')
+    echo 🔋$B
+elif [[ $(cat /sys/class/power_supply/BAT0/status) = "Charging" ]]
+then
+   echo 🔌$(acpi | awk '{print $3" "$4" "$5}')
+fi
+
+
+case $BLOCK_BUTTON in
+    1) if [[ $(cat /sys/class/power_supply/BAT0/status) = "Full" ]]
+       then
+           notify-send "Battery Status" "Full"
+       elif [[ $(cat /sys/class/power_supply/BAT0/status) = "Discharging" ]]
+       then
+           notify-send "Battery Status" "Discharging\nCapacity level: $(cat /sys/class/power_supply/BAT0/capacity)"
+       elif [[ $(cat /sys/class/power_supply/BAT0/status) = "Charging" ]]
+       then
+           notify-send "Battery Status" "Charging\nCapacity level: $(cat /sys/class/power_supply/BAT0/capacity)"
+       fi
+       ;;
+esac

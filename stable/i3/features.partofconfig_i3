@@ -11,6 +11,10 @@ set $mod Mod4
 # Compton ( эффекты )
 exec_always --no-startup-id "killall -q compton; compton --config ~/.config/compton.conf"
 
+# Dunst
+exec killall -q notify-osd
+exec --no-startup-id dunst -config ~/Configurations/stable/GUI_configurations/dunst
+
 # Меняем язык через Mod + Space
 exec --no-startup-id setxkbmap -model pc105 -layout us,ru -option grp:win_space_toggle
 

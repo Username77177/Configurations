@@ -1,0 +1,7 @@
+#!/bin/bash
+
+usage="100- `echo $(mpstat | awk '/all/ {print $13})`"
+echo $usage%
+case $BLOCK_BUTTON in
+	1) notify-send "CPU:" "$(ps axch -o cmd:15,%cpu --sort=-%cpu | head)" ;;
+esac

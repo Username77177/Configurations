@@ -1,0 +1,32 @@
+#!/bin/bash
+name=`nmcli dev wifi | awk '/*/ {print $2}'`
+# If wifi not connected (nmcli == "")
+if [[ $name = "" ]]
+then
+    echo Wifi is not connected
+fi
+
+quality=$(nmcli dev wifi | awk '/*/ {print $8}')
+if [[ $quality = "▂▄▆█" ]]
+then
+    quality='<span color="#55efc4">'$quality'</span>'
+
+elif [[ $quality = "▂▄▆_" ]]
+then
+    quality='<span color="#0984e3">'$quality'</span>'
+elif [[ $quality = "▂▄__" ]]
+then
+    quality='<span color="#fd79a8">'$quality'</span>'
+elif [[ $quality = "▂___" ]]
+then
+    quality='<span color="#ff7675">'$quality'</span>'
+fi
+echo $name $quality
+
+case $BLOCK_BUTTON in
+    1) if [[ $name = "" ]]
+       then
+           notify-send "Connection" "Please, enter nmcli con up NAME_OF_YOUR_WIFI in terminal"
+       fi;;
+    3) nmcli con down $name;;
+esac

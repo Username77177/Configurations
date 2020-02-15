@@ -3,11 +3,15 @@ DATE=$(date +"%d %b, %R:%S")
 echo $DATE
 # Что произойдёт, если кликнуть на блок (левый клик; колесо; правый клик)
 case $BLOCK_BUTTON in
-1) date ;; # left click = previous so
+1) notify-send "Информация о сегодняшнем дне" "Сегодня: $(date +%d/%m/%Y)\nДень недели: $(date +%A)\nТочное время: $(date +%R:%S)\n";;
+2) ;;
+3) i3-msg workspace "Near Zero: Float Desktop"; exec gnome-calendar; floatting enable ;;
 esac
 
 #case $BLOCK_BUTTON in
 #1) ;; #ЛЕВЫЙ
 #2) ;; #СРЕДНИЙ
 #3) ;; #ПРАВЫЙ
+#4) ;; #КОЛЕСИКО ВВЕРХ
+#5) ;; #КОЛЕСИКО ВНИЗ
 #esac

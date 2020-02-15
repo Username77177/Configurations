@@ -1,0 +1,7 @@
+#!/bin/bash
+
+case $BLOCK_BUTTON in
+    1) shutdown -h now;;
+    2) shutdown -r now;;
+    3) systemctl suspend
+esac

@@ -36,7 +36,7 @@ W='\033[0m'
 CONFIG_NAME="i3conf_`date +%d-%m-%y#%H:%M`"
 # I3 configuration
 mkdir ~/.config/i3
-mv i3conf_* i3.oldconfig
+rm -rf ~/Configurations/stabl/i3conf_*
 touch ~/Configurations/stable/$CONFIG_NAME
 echo "Writing variables module into $CONFIG_NAME"
 
