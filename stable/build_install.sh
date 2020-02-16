@@ -21,7 +21,7 @@ export $CONFIG_NAME
 #Body
 ## WARNING
 echo -e "${B}WARNING!${N}\n\tPlease, backup your configuration files for i3, i3-gaps, compton, Xresources, dunst, rofi and another files, if they can interact with i3!"
-rm ~/Configurations/stable/i3conf*
+rm -rf ~/Configurations/stable/i3conf*
 ## GENERATING CONF FILE FOR I3
 touch ~/Configurations/stable/$CONFIG_NAME
 echo "Writing variables module into $CONFIG_NAME"
@@ -42,16 +42,20 @@ cat ~/Configurations/stable/i3/i3gaps.partofconfig_i3 >> $CONFIG_NAME && echo -e
 
 echo -e "${W}Writing Bar module into $CONFIG_NAME"
 echo -e "${B}Which bar do you prefer?"
-echo "1. i3status (Default)"
-echo "2. i3-blocks"
-read status
+#echo "1. i3status (Default)"
+#echo "2. i3-blocks"
+#read status
 
-if [[ $status = "1" ]]
-then
-    cat ~/Configurations/stable/i3/bar_i3status.partofconfig_i3 >> $CONFIG_NAME && echo -e "${G}Succesfull!" || echo -e "${R}Fail!"
-else
-    cat ~/Configurations/stable/i3/bar_i3blocks.partofconfig_i3 >> $CONFIG_NAME && echo -e "${G}Succesfull!" || echo -e "${R}Fail!"
-fi
+#if [[ $status = "1" ]]
+#then
+cat ~/Configurations/stable/i3/bar_i3status.partofconfig_i3 >> $CONFIG_NAME && echo -e "${G}Succesfull!" || echo -e "${R}Fail!"
+#elif [[ $status = "2" ]]
+#then
+#    cat ~/Configurations/stable/i3/bar_i3blocks.partofconfig_i3 >> $CONFIG_NAME && echo -e "${G}Succesfull!" || echo -e "${R}Fail!"
+#elif [[ $status = "3" ]]
+#then
+#    cat ~/Configurations/stable/i3/bar_polybar.partofconfig_i3 >> $CONFIG_NAME && echo -e "${G}Succesfull!" || echo -e "${R}Fail!"
+#fi
 
 echo -e "${N}Writing Movement module into $CONFIG_NAME"
 cat ~/Configurations/stable/i3/movement.partofconfig_i3 >> $CONFIG_NAME && echo -e "${G}Succesfull!" || echo -e "${R}Fail!"
@@ -67,7 +71,7 @@ chattr -i $CONFIG_NAME
 ## INSTALLING I3
 echo "Installing i3, i3-gaps, i3blocks, i3status and another programms"
 
-sudo apt install compton feh rofi lxappearance scrot i3 i3status i3blocks gifsicle
+sudo apt install compton feh rofi lxappearance scrot i3 i3status i3blocks gifsicle fonts-noto-color-emoji
 # Compton - Эффекты (тени, затемнение, прозрачность и т.д.)
 # feh - выбор обоев
 # Rofi - лаунчер программ (альтернатива dmenu)
@@ -101,11 +105,15 @@ make clean
 # Status Bar
 echo "CONFIGURATION (FINAL STEP)"
 sleep 5 && clear
-if [[ $status = "1" ]]
-then
-    mkdir ~/.config/i3status
-    ln -sfr ~/Configurations/stable/GUI_configurations/i3status ~/.config/i3status/config
-fi
+#if [[ $status = "1" ]]
+#then
+mkdir ~/.config/i3status
+ln -sfr ~/Configurations/stable/GUI_configurations/i3status ~/.config/i3status/config
+#elif [[ $status = "3" ]]
+#then
+#    ~/Configurations/stable/GUI_configurations/linkpolybar.sh
+#fi
+
 # I3 configuration
 mkdir ~/.config/i3
 ln -sfr ~/Configurations/stable/i3conf_*  ~/.config/i3/config
