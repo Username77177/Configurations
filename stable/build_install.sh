@@ -42,20 +42,23 @@ cat ~/Configurations/stable/i3/i3gaps.partofconfig_i3 >> $CONFIG_NAME && echo -e
 
 echo -e "${W}Writing Bar module into $CONFIG_NAME"
 echo -e "${B}Which bar do you prefer?"
-#echo "1. i3status (Default)"
-#echo "2. i3-blocks"
-#read status
+echo "1. i3status (Default)"
+echo "2. i3-blocks"
+read status
 
-#if [[ $status = "1" ]]
-#then
+if [[ $status = "1" ]]
+	#i3status
+then
 cat ~/Configurations/stable/i3/bar_i3status.partofconfig_i3 >> $CONFIG_NAME && echo -e "${G}Succesfull!" || echo -e "${R}Fail!"
-#elif [[ $status = "2" ]]
-#then
-#    cat ~/Configurations/stable/i3/bar_i3blocks.partofconfig_i3 >> $CONFIG_NAME && echo -e "${G}Succesfull!" || echo -e "${R}Fail!"
+elif [[ $status = "2" ]]
+	#i3blocks
+then
+    cat ~/Configurations/stable/i3/bar_i3blocks.partofconfig_i3 >> $CONFIG_NAME && echo -e "${G}Succesfull!" || echo -e "${R}Fail!"
 #elif [[ $status = "3" ]]
+	#polybar
 #then
 #    cat ~/Configurations/stable/i3/bar_polybar.partofconfig_i3 >> $CONFIG_NAME && echo -e "${G}Succesfull!" || echo -e "${R}Fail!"
-#fi
+fi
 
 echo -e "${N}Writing Movement module into $CONFIG_NAME"
 cat ~/Configurations/stable/i3/movement.partofconfig_i3 >> $CONFIG_NAME && echo -e "${G}Succesfull!" || echo -e "${R}Fail!"
@@ -105,14 +108,14 @@ make clean
 # Status Bar
 echo "CONFIGURATION (FINAL STEP)"
 sleep 5 && clear
-#if [[ $status = "1" ]]
-#then
+if [[ $status = "1" ]]
+then
 mkdir ~/.config/i3status
 ln -sfr ~/Configurations/stable/GUI_configurations/i3status ~/.config/i3status/config
 #elif [[ $status = "3" ]]
 #then
 #    ~/Configurations/stable/GUI_configurations/linkpolybar.sh
-#fi
+fi
 
 # I3 configuration
 mkdir ~/.config/i3
